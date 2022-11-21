@@ -1,10 +1,6 @@
-﻿@*@{
-    ViewData["Title"] = "Home Page";
-}*@
-@model VforNGOss.Models.Organization
-
+﻿
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <a asp-controller="Organization" asp-action="Create" class="btn btn-primary">Add Organization</a>
-    <a class="btn btn-primary" asp-action="Home">Add Volunteer</a>
+    <a asp-controller="Organization" asp-action="Create" class="btn btn-primary">Are U an Organization?</a>
+   <a asp-controller="Volunteer" asp-action="Create" class="btn btn-primary">Are U a Volunteer?</a>
 </div>

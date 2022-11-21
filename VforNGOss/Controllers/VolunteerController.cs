@@ -6,41 +6,39 @@ using System.Data.SqlClient;
 
 namespace VforNGOss.Controllers
 {
-    public class OrganizationController : Controller
+    public class VolunteerController : Controller
     {
-        private readonly IConfiguration _configuration;
-
-
-        // GET: OrganizationController
+        // GET: VolunteerController
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: OrganizationController/Details/5
+        // GET: VolunteerController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: OrganizationController/Create
+
+        // GET: VolunteerController/Create
         public ActionResult Create()
         {
+      
             using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
             {
-                int count = 0;
-                var orgEmail = String.Format("org{0}@mail.com", count);
-                SqlCommand cmd = new SqlCommand("Insert into Organizations (Email) values(@email) ", conn);
-                cmd.Parameters.AddWithValue("email", orgEmail);
+                var volEmail = String.Format("vol11@mail.com");
+                SqlCommand cmd = new SqlCommand("Insert into Volunteers (Email) values(@email) ", conn);
+                cmd.Parameters.AddWithValue("email", volEmail);
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();
 
             }
-            return View();
+            return RedirectToAction("Index");
         }
 
-        // POST: OrganizationController/Create
+        // POST: VolunteerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -55,13 +53,13 @@ namespace VforNGOss.Controllers
             }
         }
 
-        // GET: OrganizationController/Edit/5
+        // GET: VolunteerController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: OrganizationController/Edit/5
+        // POST: VolunteerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -76,13 +74,13 @@ namespace VforNGOss.Controllers
             }
         }
 
-        // GET: OrganizationController/Delete/5
+        // GET: VolunteerController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: OrganizationController/Delete/5
+        // POST: VolunteerController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
