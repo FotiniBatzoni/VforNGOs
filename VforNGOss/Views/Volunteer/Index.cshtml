@@ -1,13 +1,42 @@
-﻿
-<form>
-  <fieldset>
-    <legend>Register Volunteer</legend>
-    <div class="form-group">
-      <label for="exampleInputEmail1" class="form-label mt-4 fw-bold" >Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <button type="submit" class="btn btn-primary mt-4">Submit</button>
-  </fieldset>
-</form>
+﻿@using VforNGOss.ViewModels;
+@model VolunteerVM;
 
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Display Volunteers</h2>
+<table class="table table-hover mt-4">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+        @foreach(var obj in @Model.VolunteerList)
+        {
+           <tr>
+                <td width="25%">
+                    @obj.Id
+                </td>
+                <td width="45%">
+                    @obj.Email
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                      <a  asp-controller="Volunteer" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary"> &nbsp;
+                     <i class="bi bi-pencil-square"></i>
+                        Edit
+                    </a>
+                    <a  asp-controller="Volunteer" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger"> &nbsp;
+                     <i class="bi bi-trash"></i>
+                        Delete
+                    </a>
+                    </div>
+
+                </td>
+            </tr>            
+        }
+  </tbody>
+</table>
