@@ -1,4 +1,11 @@
-﻿<h2>Display Organizations</h2>
+﻿@using VforNGOss.ViewModels;
+@model OrganizationVM;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="mt-4">Display NGOs</h2>
 <table class="table table-hover mt-4">
   <thead>
     <tr>
@@ -7,13 +14,29 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="table-primary">
-      <th scope="row">Primary</th>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-secondary">
-      <th scope="row">Secondary</th>
-      <td>Column content</td>
-    </tr>
+        @foreach(var obj in @Model.OrganizationList)
+        {
+           <tr class="table-secondary">
+                <td width="10%">
+                    @obj.Id
+                </td>
+                <td width="55%">
+                    @obj.Email
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                      <a  asp-controller="Volunteer" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary"> &nbsp;
+                     <i class="bi bi-pencil-square"></i>
+                        Edit
+                    </a>
+                    <a  asp-controller="Volunteer" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger"> &nbsp;
+                     <i class="bi bi-trash"></i>
+                        Delete
+                    </a>
+                    </div>
+
+                </td>
+            </tr>            
+        }
   </tbody>
 </table>

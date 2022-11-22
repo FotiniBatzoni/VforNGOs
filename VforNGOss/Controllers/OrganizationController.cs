@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using VforNGOss.Models;
+using VforNGOss.ViewModels;
 
 namespace VforNGOss.Controllers
 {
@@ -14,7 +16,38 @@ namespace VforNGOss.Controllers
         // GET: OrganizationController
         public ActionResult Index()
         {
-            return View();
+
+            List<Organization> organizationList = new List<Organization>();
+            OrganizationVM organizationVM = new OrganizationVM();
+
+            string query = "SELECT *  FROM Organizations";
+
+            using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader;
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                if (!reader.HasRows) return null;
+
+                // Call Read before accessing data.
+                while (reader.Read())
+                {
+                    Organization organization = new Organization();
+                    organization.Id = Convert.ToInt32(reader["Id"]);
+                    organization.Email = reader["Email"].ToString();
+                    organizationList.Add(organization);
+                }
+
+                organizationVM.OrganizationList = organizationList;
+
+                reader.Close();
+
+                conn.Close();
+
+            }
+            return View(organizationVM);
         }
 
         // GET: OrganizationController/Details/5

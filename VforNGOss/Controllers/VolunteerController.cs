@@ -12,7 +12,7 @@ namespace VforNGOss.Controllers
     {
     // GET: VolunteerController
     public ActionResult Index()
-        {
+    {
             List<Volunteer> volunteerList = new List<Volunteer>();
             VolunteerVM volunteerVM = new VolunteerVM();
 
