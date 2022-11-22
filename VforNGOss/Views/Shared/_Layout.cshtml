@@ -30,11 +30,11 @@
                   <a class="nav-link" href="#">About</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Display</a>
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  href="#" role="button" aria-haspopup="true" aria-expanded="false">Display</a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item text-bg-secondary" href="#">Organizations</a>
+                    <a class="dropdown-item text-bg-secondary" asp-controller="Organization" asp-action="Index">Organizations</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-bg-secondary" href="#">Volunteers</a>
+                    <a class="dropdown-item text-bg-secondary" asp-controller="Volunteer" asp-action="Index">Volunteers</a>
                   </div>
                 </li>
               </ul>
