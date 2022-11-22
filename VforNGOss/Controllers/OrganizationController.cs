@@ -50,6 +50,7 @@ namespace VforNGOss.Controllers
             return View(organizationVM);
         }
 
+
         // GET: OrganizationController/Details/5
         public ActionResult Details(int id)
         {
@@ -59,27 +60,27 @@ namespace VforNGOss.Controllers
         // GET: OrganizationController/Create
         public ActionResult Create()
         {
-            using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-            {
-                int count = 0;
-                var orgEmail = String.Format("org{0}@mail.com", count);
-                SqlCommand cmd = new SqlCommand("Insert into Organizations (Email) values(@email) ", conn);
-                cmd.Parameters.AddWithValue("email", orgEmail);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
 
-            }
-            return View();
+            return View("Create");
         }
 
         // POST: OrganizationController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Organization org)
         {
             try
             {
+                using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+                {
+                    var orgEmail = org.Email;
+                    SqlCommand cmd = new SqlCommand("Insert into Organizations (Email) values(@email) ", conn);
+                    cmd.Parameters.AddWithValue("email", orgEmail);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch

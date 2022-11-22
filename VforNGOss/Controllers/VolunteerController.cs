@@ -56,27 +56,27 @@ namespace VforNGOss.Controllers
         // GET: VolunteerController/Create
         public ActionResult Create()
         {
-      
-            using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-            {
-                var volEmail = String.Format("vol11@mail.com");
-                SqlCommand cmd = new SqlCommand("Insert into Volunteers (Email) values(@email) ", conn);
-                cmd.Parameters.AddWithValue("email", volEmail);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
+            return View("Create");
 
-            }
-            return RedirectToAction("Index");
         }
 
         // POST: VolunteerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Volunteer vol)
         {
             try
             {
+                using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+                {
+                    var volEmail = vol.Email;
+                    SqlCommand cmd = new SqlCommand("Insert into Volunteers (Email) values(@email) ", conn);
+                    cmd.Parameters.AddWithValue("email", volEmail);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
