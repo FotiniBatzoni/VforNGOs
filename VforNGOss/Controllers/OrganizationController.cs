@@ -91,7 +91,26 @@ namespace VforNGOss.Controllers
         // GET: OrganizationController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Organization organization = new Organization();
+            string query = "SELECT *  FROM Organizations WHERE ID=" + id;
+
+            using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                SqlDataReader reader;
+                reader = cmd.ExecuteReader();
+                // Call Read before accessing data.
+                while (reader.Read())
+                {
+                    organization.Id = Convert.ToInt32(reader["Id"]);
+                    organization.Email = reader["Email"].ToString();
+                }
+
+                reader.Close();
+            }
+
+            return View(organization);
         }
 
         // POST: OrganizationController/Edit/5
