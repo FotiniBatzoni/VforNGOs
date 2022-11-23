@@ -120,6 +120,16 @@ namespace VforNGOss.Controllers
         {
             try
             {
+                using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+                {
+                    var organizationEmail = organization.Email;
+                    SqlCommand cmd = new SqlCommand("Update Organizations Set Email = @email Where id="+id, conn);
+                    cmd.Parameters.AddWithValue("email", organizationEmail);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
