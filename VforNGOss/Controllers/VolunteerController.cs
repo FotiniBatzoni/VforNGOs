@@ -113,10 +113,20 @@ namespace VforNGOss.Controllers
         // POST: VolunteerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Volunteer volunteer)
         {
             try
             {
+                using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+                {
+                    var volunteerEmail = volunteer.Email;
+                    SqlCommand cmd = new SqlCommand("Update Volunteers Set Email = @email Where id=" + id, conn);
+                    cmd.Parameters.AddWithValue("email", volunteerEmail);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
