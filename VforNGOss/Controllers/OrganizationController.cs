@@ -60,7 +60,6 @@ namespace VforNGOss.Controllers
         // GET: OrganizationController/Create
         public ActionResult Create()
         {
-
             return View("Create");
         }
 
@@ -98,7 +97,7 @@ namespace VforNGOss.Controllers
         // POST: OrganizationController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Organization organization)
         {
             try
             {
@@ -113,16 +112,23 @@ namespace VforNGOss.Controllers
         // GET: OrganizationController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+            {
+                SqlCommand cmd = new SqlCommand("Delete from Organizations where id = " + id + " ", conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: OrganizationController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Organization organization)
         {
             try
-            {
+            {   
                 return RedirectToAction(nameof(Index));
             }
             catch
