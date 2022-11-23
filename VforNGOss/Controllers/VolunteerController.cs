@@ -109,7 +109,14 @@ namespace VforNGOss.Controllers
         // GET: VolunteerController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+            {
+                SqlCommand cmd = new SqlCommand("Delete from Volunteers where id = " + id + " ", conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: VolunteerController/Delete/5
