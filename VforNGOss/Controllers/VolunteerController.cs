@@ -88,7 +88,26 @@ namespace VforNGOss.Controllers
         // GET: VolunteerController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Volunteer volunteer = new Volunteer();
+            string query = "SELECT *  FROM Volunteers WHERE ID=" + id;
+
+            using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                SqlDataReader reader;
+                reader = cmd.ExecuteReader();
+                // Call Read before accessing data.
+                while (reader.Read())
+                {
+                    volunteer.Id = Convert.ToInt32(reader["Id"]);
+                    volunteer.Email = reader["Email"].ToString();
+                }
+
+                reader.Close();
+            }
+
+            return View(volunteer);
         }
 
         // POST: VolunteerController/Edit/5
