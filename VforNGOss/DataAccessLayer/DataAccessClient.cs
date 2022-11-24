@@ -33,19 +33,14 @@ namespace VforNGOss.DataAccessLayer
         }
 
         // Set the connection, command, and then execute the command with query and return the reader.  
-        //  public static SqlDataReader ExecuteReader( String commandText, CommandType commandType, params SqlParameter[] parameters)
         public static SqlDataReader ExecuteReader( String query)
         {
             SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;");
 
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
-                //cmd.CommandType = commandType;
-                //cmd.Parameters.AddRange(parameters);
-
                 conn.Open();
-                // When using CommandBehavior.CloseConnection, the connection will be closed when the   
-                // IDataReader is closed.  
+
                 SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
 
                 return reader;
