@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using VforNGOss.DataAccessLayer;
 using VforNGOss.Models;
 using VforNGOss.ViewModels;
 
@@ -13,38 +14,62 @@ namespace VforNGOss.Controllers
     // GET: VolunteerController
     public ActionResult Index()
     {
+            //List<Volunteer> volunteerList = new List<Volunteer>();
+            //VolunteerVM volunteerVM = new VolunteerVM();
+
+            //string query = "SELECT *  FROM Volunteers";
+
+            //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+            //{
+            //    SqlCommand cmd = new SqlCommand(query, conn);
+            //    SqlDataReader reader;
+            //    conn.Open();
+            //    reader = cmd.ExecuteReader(query);
+
+            //    if (!reader.HasRows) return null;
+
+            //    // Call Read before accessing data.
+            //    while (reader.Read())
+            //    {
+            //        Volunteer volunteer = new Volunteer();
+            //        volunteer.Id = Convert.ToInt32(reader["Id"]);
+            //        volunteer.Email = reader["Email"].ToString();
+            //        volunteerList.Add(volunteer);
+            //    }
+
+            //    volunteerVM.VolunteerList = volunteerList;
+
+            //    reader.Close();
+
+            //    conn.Close();
+
+            //}
+            //return View(volunteerVM);
+
+
             List<Volunteer> volunteerList = new List<Volunteer>();
             VolunteerVM volunteerVM = new VolunteerVM();
 
             string query = "SELECT *  FROM Volunteers";
 
-            using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+            SqlDataReader reader = DataAccessClient.ExecuteReader(query);
+
+            // Call Read before accessing data.
+            while (reader.Read())
             {
-                SqlCommand cmd = new SqlCommand(query, conn);
-                SqlDataReader reader;
-                conn.Open();
-                reader = cmd.ExecuteReader();
-
-                if (!reader.HasRows) return null;
-
-                // Call Read before accessing data.
-                while (reader.Read())
-                {
-                    Volunteer volunteer = new Volunteer();
-                    volunteer.Id = Convert.ToInt32(reader["Id"]);
-                    volunteer.Email = reader["Email"].ToString();
-                    volunteerList.Add(volunteer);
-                }
-                
-                volunteerVM.VolunteerList = volunteerList;
-
-                reader.Close();
-
-                conn.Close();
-
+                Volunteer volunteer = new Volunteer();
+                volunteer.Id = Convert.ToInt32(reader["Id"]);
+                volunteer.Email = reader["Email"].ToString();
+                volunteerList.Add(volunteer);
             }
+
+            volunteerVM.VolunteerList = volunteerList;
+
+            reader.Close();
+
+            DataAccessClient.ConnectionClose();
             return View(volunteerVM);
-        }
+    }
 
         // GET: VolunteerController/Details/5
         public ActionResult Details(int id)
