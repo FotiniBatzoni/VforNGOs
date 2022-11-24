@@ -157,16 +157,22 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-                {
-                    var volunteerEmail = volunteer.Email;
-                    SqlCommand cmd = new SqlCommand("Update Volunteers Set Email = @email Where id=" + id, conn);
-                    cmd.Parameters.AddWithValue("email", volunteerEmail);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
+                //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+                //{
+                //    var volunteerEmail = volunteer.Email;
+                //    SqlCommand cmd = new SqlCommand("Update Volunteers Set Email = @email Where id=" + id, conn);
+                //    cmd.Parameters.AddWithValue("email", volunteerEmail);
+                //    conn.Open();
+                //    cmd.ExecuteNonQuery();
+                //    conn.Close();
 
-                }
+                //}
+                string query = "Update volunteers Set Email = @email Where id=" + id;
+
+                DataAccessClient.ExecuteNonQuery(query, "email", volunteer.Email);
+                DataAccessClient.ConnectionClose();
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -178,13 +184,19 @@ namespace VforNGOss.Controllers
         // GET: VolunteerController/Delete/5
         public ActionResult Delete(int id)
         {
-            using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-            {
-                SqlCommand cmd = new SqlCommand("Delete from Volunteers where id = " + id + " ", conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
+            //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+            //{
+            //    SqlCommand cmd = new SqlCommand("Delete from Volunteers where id = " + id + " ", conn);
+            //    conn.Open();
+            //    cmd.ExecuteNonQuery();
+            //    conn.Close();
+            //}
+
+            string query = "Delete from Volunteers where id = " + id;
+
+            DataAccessClient.ExecuteNonQuery(query);
+            DataAccessClient.ConnectionClose();
+
             return RedirectToAction(nameof(Index));
         }
 

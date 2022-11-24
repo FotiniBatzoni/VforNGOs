@@ -20,6 +20,18 @@ namespace VforNGOss.DataAccessLayer
             }
         }
 
+        public static Int32 ExecuteNonQuery(String query)
+        {
+            using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                   conn.Open();
+                    return cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         // Set the connection, command, and then execute the command with query and return the reader.  
         //  public static SqlDataReader ExecuteReader( String commandText, CommandType commandType, params SqlParameter[] parameters)
         public static SqlDataReader ExecuteReader( String query)
