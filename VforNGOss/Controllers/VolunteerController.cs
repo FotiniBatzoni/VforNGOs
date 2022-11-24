@@ -92,16 +92,25 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-                {
-                    var volEmail = vol.Email;
-                    SqlCommand cmd = new SqlCommand("Insert into Volunteers (Email) values(@email) ", conn);
-                    cmd.Parameters.AddWithValue("email", volEmail);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
+                //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+                //{
+                //    var volEmail = vol.Email;
+                //    SqlCommand cmd = new SqlCommand("Insert into Volunteers (Email) values(@email) ", conn);
+                //    cmd.Parameters.AddWithValue("email", volEmail);
+                //    conn.Open();
+                //    cmd.ExecuteNonQuery();
+                //    conn.Close();
 
-                }
+                //}
+
+                var volEmail = vol.Email;
+                string query = "Insert into Volunteers (Email) values(@email)";
+
+                DataAccessClient.ExecuteNonQuery(query, "email", volEmail);
+
+                DataAccessClient.ConnectionClose();
+
+                return RedirectToAction(nameof(Index));
                 return RedirectToAction(nameof(Index));
             }
             catch
