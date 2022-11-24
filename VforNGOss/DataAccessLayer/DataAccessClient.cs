@@ -5,16 +5,14 @@ namespace VforNGOss.DataAccessLayer
 {
     public class DataAccessClient 
     {
-        public static Int32 ExecuteNonQuery(String commandText,CommandType commandType, params SqlParameter[] parameters)
+        public static Int32 ExecuteNonQuery(String commandText, String parameterName, String value)
         {
             using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
             {
                 using (SqlCommand cmd = new SqlCommand(commandText, conn))
                 {
-                    // There're three command types: StoredProcedure, Text, TableDirect. The TableDirect   
-                    // type is only for OLE DB.    
-                    cmd.CommandType = commandType;
-                    cmd.Parameters.AddRange(parameters);
+
+                    cmd.Parameters.AddWithValue(parameterName,value);
 
                     conn.Open();
                     return cmd.ExecuteNonQuery();
