@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace VforNGOss.DataAccessLayer
 {
-    public class DataAccessClient 
+    public static class DataAccessClient 
     {
         public static Int32 ExecuteNonQuery(String query, String parameterName, String value)
         {

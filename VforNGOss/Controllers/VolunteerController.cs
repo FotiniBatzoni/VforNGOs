@@ -14,27 +14,8 @@ namespace VforNGOss.Controllers
     // GET: VolunteerController
     public ActionResult Index()
     {
-            List<Volunteer> volunteerList = new List<Volunteer>();
             VolunteerVM volunteerVM = new VolunteerVM();
-
-            string query = "SELECT *  FROM Volunteers";
-
-            SqlDataReader reader = DataAccessClient.ExecuteReader(query);
-
-            // Call Read before accessing data.
-            while (reader.Read())
-            {
-                Volunteer volunteer = new Volunteer();
-                volunteer.Id = Convert.ToInt32(reader["Id"]);
-                volunteer.Email = reader["Email"].ToString();
-                volunteerList.Add(volunteer);
-            }
-
-            volunteerVM.VolunteerList = volunteerList;
-
-            reader.Close();
-
-            DataAccessClient.ConnectionClose();
+            volunteerVM.VolunteerList = DataMapper.GetAllVolunteers();
             return View(volunteerVM);
     }
 
@@ -60,6 +41,11 @@ namespace VforNGOss.Controllers
             try
             {
                 var volEmail = vol.Email;
+                //bool validEmail = Utilities.ValidateEmail.EmailIsValid(volEmail);
+                //if (!validEmail)
+                //{
+                //    MessageBox.Show("My message here");
+                //}
                 string query = "Insert into Volunteers (Email) values(@email)";
 
                 DataAccessClient.ExecuteNonQuery(query, "email", volEmail);

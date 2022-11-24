@@ -18,29 +18,31 @@ namespace VforNGOss.Controllers
         public ActionResult Index()
         {
 
-            List<Organization> organizationList = new List<Organization>();
+            //List<Organization> organizationList = new List<Organization>();
+            //OrganizationVM organizationVM = new OrganizationVM();
+
+            //string query = "SELECT *  FROM Organizations";
+
+
+            //SqlDataReader reader = DataAccessClient.ExecuteReader(query);
+
+            //// Call Read before accessing data.
+            //while (reader.Read())
+            //{
+            //    Organization organization = new Organization();
+            //    organization.Id = Convert.ToInt32(reader["Id"]);
+            //    organization.Email = reader["Email"].ToString();
+            //    organizationList.Add(organization);
+            //}
+
+            //organizationVM.OrganizationList = organizationList;
+
+            //reader.Close();
+
+            //DataAccessClient.ConnectionClose();
+
             OrganizationVM organizationVM = new OrganizationVM();
-
-            string query = "SELECT *  FROM Organizations";
-
-
-            SqlDataReader reader = DataAccessClient.ExecuteReader(query);
-
-            // Call Read before accessing data.
-            while (reader.Read())
-            {
-                Organization organization = new Organization();
-                organization.Id = Convert.ToInt32(reader["Id"]);
-                organization.Email = reader["Email"].ToString();
-                organizationList.Add(organization);
-            }
-
-            organizationVM.OrganizationList = organizationList;
-
-            reader.Close();
-
-            DataAccessClient.ConnectionClose();
-
+            organizationVM.OrganizationList = DataMapper.GetAllOrganizations();;
             return View(organizationVM);
         }
 
