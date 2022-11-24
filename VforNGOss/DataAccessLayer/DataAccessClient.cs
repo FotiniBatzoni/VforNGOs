@@ -41,7 +41,7 @@ namespace VforNGOss.DataAccessLayer
             {
                 conn.Open();
 
-                SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
 
                 return reader;
             }
