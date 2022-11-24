@@ -97,21 +97,29 @@ namespace VforNGOss.Controllers
             Organization organization = new Organization();
             string query = "SELECT *  FROM Organizations WHERE ID=" + id;
 
-            using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-            {
-                SqlCommand cmd = new SqlCommand(query, conn);
-                conn.Open();
-                SqlDataReader reader;
-                reader = cmd.ExecuteReader();
-                // Call Read before accessing data.
-                while (reader.Read())
-                {
-                    organization.Id = Convert.ToInt32(reader["Id"]);
-                    organization.Email = reader["Email"].ToString();
-                }
+            //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+            //{
+            //    SqlCommand cmd = new SqlCommand(query, conn);
+            //    conn.Open();
+            //    SqlDataReader reader;
+            //    reader = cmd.ExecuteReader();
+            //    // Call Read before accessing data.
+            //    while (reader.Read())
+            //    {
+            //        organization.Id = Convert.ToInt32(reader["Id"]);
+            //        organization.Email = reader["Email"].ToString();
+            //    }
 
-                reader.Close();
+            //    reader.Close();
+            //}
+
+            SqlDataReader reader = DataAccessClient.ExecuteReader(query);
+            while (reader.Read())
+            {
+                organization.Id = Convert.ToInt32(reader["Id"]);
+                organization.Email = reader["Email"].ToString();
             }
+            DataAccessClient.ConnectionClose();
 
             return View(organization);
         }
