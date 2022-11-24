@@ -66,16 +66,6 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-                //{
-                //    var orgEmail = org.Email;
-                //    SqlCommand cmd = new SqlCommand("Insert into Organizations (Email) values(@email) ", conn);
-                //    cmd.Parameters.AddWithValue("email", orgEmail);
-                //    conn.Open();
-                //    cmd.ExecuteNonQuery();
-                //    conn.Close();
-
-                //}
                 var orgEmail = org.Email;
                 string query = "Insert into Organizations (Email) values(@email)";
 
@@ -97,22 +87,6 @@ namespace VforNGOss.Controllers
             Organization organization = new Organization();
             string query = "SELECT *  FROM Organizations WHERE ID=" + id;
 
-            //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-            //{
-            //    SqlCommand cmd = new SqlCommand(query, conn);
-            //    conn.Open();
-            //    SqlDataReader reader;
-            //    reader = cmd.ExecuteReader();
-            //    // Call Read before accessing data.
-            //    while (reader.Read())
-            //    {
-            //        organization.Id = Convert.ToInt32(reader["Id"]);
-            //        organization.Email = reader["Email"].ToString();
-            //    }
-
-            //    reader.Close();
-            //}
-
             SqlDataReader reader = DataAccessClient.ExecuteReader(query);
             while (reader.Read())
             {
@@ -131,16 +105,6 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-                //{
-                //    var organizationEmail = organization.Email;
-                //    SqlCommand cmd = new SqlCommand("Update Organizations Set Email = @email Where id="+id, conn);
-                //    cmd.Parameters.AddWithValue("email", organizationEmail);
-                //    conn.Open();
-                //    cmd.ExecuteNonQuery();
-                //    conn.Close();
-
-                //}
                 string query = "Update Organizations Set Email = @email Where id=" + id;
 
                 DataAccessClient.ExecuteNonQuery(query, "email", organization.Email);
@@ -157,14 +121,6 @@ namespace VforNGOss.Controllers
         // GET: OrganizationController/Delete/5
         public ActionResult Delete(int id)
         {
-            //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-            //{
-            //    SqlCommand cmd = new SqlCommand("Delete from Organizations where id = " + id + " ", conn);
-            //    conn.Open();
-            //    cmd.ExecuteNonQuery();
-            //    conn.Close();
-            //}
-
             string query = "Delete from Organizations where id = " + id;
 
             DataAccessClient.ExecuteNonQuery(query);
