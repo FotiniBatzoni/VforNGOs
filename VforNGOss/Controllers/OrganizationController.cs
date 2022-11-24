@@ -157,13 +157,18 @@ namespace VforNGOss.Controllers
         // GET: OrganizationController/Delete/5
         public ActionResult Delete(int id)
         {
-            using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-            {
-                SqlCommand cmd = new SqlCommand("Delete from Organizations where id = " + id + " ", conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
+            //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+            //{
+            //    SqlCommand cmd = new SqlCommand("Delete from Organizations where id = " + id + " ", conn);
+            //    conn.Open();
+            //    cmd.ExecuteNonQuery();
+            //    conn.Close();
+            //}
+
+            string query = "Delete from Organizations where id = " + id;
+
+            DataAccessClient.ExecuteNonQuery(query);
+            DataAccessClient.ConnectionClose();
             return RedirectToAction(nameof(Index));
         }
 
