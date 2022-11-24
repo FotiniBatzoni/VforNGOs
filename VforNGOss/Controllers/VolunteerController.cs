@@ -14,39 +14,6 @@ namespace VforNGOss.Controllers
     // GET: VolunteerController
     public ActionResult Index()
     {
-            //List<Volunteer> volunteerList = new List<Volunteer>();
-            //VolunteerVM volunteerVM = new VolunteerVM();
-
-            //string query = "SELECT *  FROM Volunteers";
-
-            //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-            //{
-            //    SqlCommand cmd = new SqlCommand(query, conn);
-            //    SqlDataReader reader;
-            //    conn.Open();
-            //    reader = cmd.ExecuteReader(query);
-
-            //    if (!reader.HasRows) return null;
-
-            //    // Call Read before accessing data.
-            //    while (reader.Read())
-            //    {
-            //        Volunteer volunteer = new Volunteer();
-            //        volunteer.Id = Convert.ToInt32(reader["Id"]);
-            //        volunteer.Email = reader["Email"].ToString();
-            //        volunteerList.Add(volunteer);
-            //    }
-
-            //    volunteerVM.VolunteerList = volunteerList;
-
-            //    reader.Close();
-
-            //    conn.Close();
-
-            //}
-            //return View(volunteerVM);
-
-
             List<Volunteer> volunteerList = new List<Volunteer>();
             VolunteerVM volunteerVM = new VolunteerVM();
 
@@ -92,17 +59,6 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-                //{
-                //    var volEmail = vol.Email;
-                //    SqlCommand cmd = new SqlCommand("Insert into Volunteers (Email) values(@email) ", conn);
-                //    cmd.Parameters.AddWithValue("email", volEmail);
-                //    conn.Open();
-                //    cmd.ExecuteNonQuery();
-                //    conn.Close();
-
-                //}
-
                 var volEmail = vol.Email;
                 string query = "Insert into Volunteers (Email) values(@email)";
 
@@ -124,22 +80,6 @@ namespace VforNGOss.Controllers
             Volunteer volunteer = new Volunteer();
             string query = "SELECT *  FROM Volunteers WHERE ID=" + id;
 
-            //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-            //{
-            //    SqlCommand cmd = new SqlCommand(query, conn);
-            //    conn.Open();
-            //    SqlDataReader reader;
-            //    reader = cmd.ExecuteReader();
-            //    // Call Read before accessing data.
-            //    while (reader.Read())
-            //    {
-            //        volunteer.Id = Convert.ToInt32(reader["Id"]);
-            //        volunteer.Email = reader["Email"].ToString();
-            //    }
-
-            //    reader.Close();
-            //}
-
             SqlDataReader reader = DataAccessClient.ExecuteReader(query);
                while (reader.Read())
                 {
@@ -157,16 +97,6 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-                //{
-                //    var volunteerEmail = volunteer.Email;
-                //    SqlCommand cmd = new SqlCommand("Update Volunteers Set Email = @email Where id=" + id, conn);
-                //    cmd.Parameters.AddWithValue("email", volunteerEmail);
-                //    conn.Open();
-                //    cmd.ExecuteNonQuery();
-                //    conn.Close();
-
-                //}
                 string query = "Update volunteers Set Email = @email Where id=" + id;
 
                 DataAccessClient.ExecuteNonQuery(query, "email", volunteer.Email);
@@ -184,14 +114,6 @@ namespace VforNGOss.Controllers
         // GET: VolunteerController/Delete/5
         public ActionResult Delete(int id)
         {
-            //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-            //{
-            //    SqlCommand cmd = new SqlCommand("Delete from Volunteers where id = " + id + " ", conn);
-            //    conn.Open();
-            //    cmd.ExecuteNonQuery();
-            //    conn.Close();
-            //}
-
             string query = "Delete from Volunteers where id = " + id;
 
             DataAccessClient.ExecuteNonQuery(query);
