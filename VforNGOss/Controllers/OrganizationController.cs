@@ -131,16 +131,21 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-                {
-                    var organizationEmail = organization.Email;
-                    SqlCommand cmd = new SqlCommand("Update Organizations Set Email = @email Where id="+id, conn);
-                    cmd.Parameters.AddWithValue("email", organizationEmail);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
+                //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+                //{
+                //    var organizationEmail = organization.Email;
+                //    SqlCommand cmd = new SqlCommand("Update Organizations Set Email = @email Where id="+id, conn);
+                //    cmd.Parameters.AddWithValue("email", organizationEmail);
+                //    conn.Open();
+                //    cmd.ExecuteNonQuery();
+                //    conn.Close();
 
-                }
+                //}
+                string query = "Update Organizations Set Email = @email Where id=" + id;
+
+                DataAccessClient.ExecuteNonQuery(query, "email", organization.Email);
+                DataAccessClient.ConnectionClose();
+
                 return RedirectToAction(nameof(Index));
             }
             catch
