@@ -111,7 +111,6 @@ namespace VforNGOss.Controllers
                 DataAccessClient.ConnectionClose();
 
                 return RedirectToAction(nameof(Index));
-                return RedirectToAction(nameof(Index));
             }
             catch
             {
@@ -125,22 +124,29 @@ namespace VforNGOss.Controllers
             Volunteer volunteer = new Volunteer();
             string query = "SELECT *  FROM Volunteers WHERE ID=" + id;
 
-            using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
-            {
-                SqlCommand cmd = new SqlCommand(query, conn);
-                conn.Open();
-                SqlDataReader reader;
-                reader = cmd.ExecuteReader();
-                // Call Read before accessing data.
-                while (reader.Read())
+            //using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+            //{
+            //    SqlCommand cmd = new SqlCommand(query, conn);
+            //    conn.Open();
+            //    SqlDataReader reader;
+            //    reader = cmd.ExecuteReader();
+            //    // Call Read before accessing data.
+            //    while (reader.Read())
+            //    {
+            //        volunteer.Id = Convert.ToInt32(reader["Id"]);
+            //        volunteer.Email = reader["Email"].ToString();
+            //    }
+
+            //    reader.Close();
+            //}
+
+            SqlDataReader reader = DataAccessClient.ExecuteReader(query);
+               while (reader.Read())
                 {
                     volunteer.Id = Convert.ToInt32(reader["Id"]);
                     volunteer.Email = reader["Email"].ToString();
                 }
-
-                reader.Close();
-            }
-
+            DataAccessClient.ConnectionClose();
             return View(volunteer);
         }
 
