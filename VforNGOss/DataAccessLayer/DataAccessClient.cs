@@ -5,11 +5,11 @@ namespace VforNGOss.DataAccessLayer
 {
     public class DataAccessClient 
     {
-        public static Int32 ExecuteNonQuery(String commandText, String parameterName, String value)
+        public static Int32 ExecuteNonQuery(String query, String parameterName, String value)
         {
             using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
             {
-                using (SqlCommand cmd = new SqlCommand(commandText, conn))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
 
                     cmd.Parameters.AddWithValue(parameterName,value);
@@ -22,11 +22,11 @@ namespace VforNGOss.DataAccessLayer
 
         // Set the connection, command, and then execute the command with query and return the reader.  
         //  public static SqlDataReader ExecuteReader( String commandText, CommandType commandType, params SqlParameter[] parameters)
-        public static SqlDataReader ExecuteReader( String commandText)
+        public static SqlDataReader ExecuteReader( String query)
         {
             SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;");
 
-            using (SqlCommand cmd = new SqlCommand(commandText, conn))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 //cmd.CommandType = commandType;
                 //cmd.Parameters.AddRange(parameters);
