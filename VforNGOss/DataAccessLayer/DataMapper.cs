@@ -45,9 +45,8 @@ namespace VforNGOss.DataAccessLayer
 
 
 
-        public static Volunteer GetVolunteerById(int id)
+        public static Volunteer GetVolunteerById(int id,Volunteer volunteer)
         {
-            Volunteer volunteer = new Volunteer();
             string query = "SELECT *  FROM Volunteers WHERE ID=" + id;
 
             SqlDataReader reader = DataAccessClient.ExecuteReader(query);
@@ -74,7 +73,16 @@ namespace VforNGOss.DataAccessLayer
         }
 
 
+        public static Volunteer DeleteVolunteerById(int id)
+        {
+            Volunteer volunteer = new Volunteer();
+            string query = "Delete from Volunteers where id = " + id;
 
+            DataAccessClient.ExecuteNonQuery(query);
+            DataAccessClient.ConnectionClose();
+
+            return volunteer;
+        }
 
 
 

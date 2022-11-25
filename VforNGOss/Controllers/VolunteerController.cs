@@ -70,7 +70,7 @@ namespace VforNGOss.Controllers
             //    }
             //DataAccessClient.ConnectionClose();
 
-            DataMapper.GetVolunteerById(id);
+            DataMapper.GetVolunteerById(id,volunteer);
 
             return View(volunteer);
         }
@@ -87,7 +87,7 @@ namespace VforNGOss.Controllers
                 //DataAccessClient.ExecuteNonQuery(query, "email", volunteer.Email);
                 //DataAccessClient.ConnectionClose();
 
-                DataMapper.EditVolunteerById(id, volunteer);
+                DataMapper.EditVolunteerById(id,volunteer);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -100,10 +100,11 @@ namespace VforNGOss.Controllers
         // GET: VolunteerController/Delete/5
         public ActionResult Delete(int id)
         {
-            string query = "Delete from Volunteers where id = " + id;
+            //string query = "Delete from Volunteers where id = " + id;
 
-            DataAccessClient.ExecuteNonQuery(query);
-            DataAccessClient.ConnectionClose();
+            //DataAccessClient.ExecuteNonQuery(query);
+            //DataAccessClient.ConnectionClose();
+            DataMapper.DeleteVolunteerById(id);
 
             return RedirectToAction(nameof(Index));
         }
