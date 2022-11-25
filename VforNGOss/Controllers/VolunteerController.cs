@@ -36,7 +36,7 @@ namespace VforNGOss.Controllers
         // POST: VolunteerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Volunteer vol)
+        public ActionResult Create(Volunteer volunteer)
         {
             try
             {                //var volEmail = vol.Email;
@@ -47,7 +47,7 @@ namespace VforNGOss.Controllers
 
                 //DataAccessClient.ConnectionClose();
 
-                DataMapper.PostVolunteer(vol);
+                DataMapper.PostVolunteer(volunteer);
                 return RedirectToAction(nameof(Index));
             }
             catch
