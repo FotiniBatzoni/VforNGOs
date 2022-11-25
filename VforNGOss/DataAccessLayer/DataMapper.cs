@@ -129,8 +129,24 @@ namespace VforNGOss.DataAccessLayer
         }
 
 
+        public static Organization GetOrganizationById(int id, Organization organization)
+        {
+;
+            string query = "SELECT *  FROM Organizations WHERE ID=" + id;
 
-        public static Organization EditOrganizationrById(int id, Organization organization)
+            SqlDataReader reader = DataAccessClient.ExecuteReader(query);
+            while (reader.Read())
+            {
+                organization.Id = Convert.ToInt32(reader["Id"]);
+                organization.Email = reader["Email"].ToString();
+            }
+            DataAccessClient.ConnectionClose();
+            return organization;
+        }
+
+
+
+        public static Organization EditOrganizationById(int id, Organization organization)
         {
             string query = "Update Organizations Set Email = @email Where id=" + id;
 

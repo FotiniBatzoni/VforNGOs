@@ -89,16 +89,16 @@ namespace VforNGOss.Controllers
         public ActionResult Edit(int id)
         {
             Organization organization = new Organization();
-            string query = "SELECT *  FROM Organizations WHERE ID=" + id;
+            //string query = "SELECT *  FROM Organizations WHERE ID=" + id;
 
-            SqlDataReader reader = DataAccessClient.ExecuteReader(query);
-            while (reader.Read())
-            {
-                organization.Id = Convert.ToInt32(reader["Id"]);
-                organization.Email = reader["Email"].ToString();
-            }
-            DataAccessClient.ConnectionClose();
-
+            //SqlDataReader reader = DataAccessClient.ExecuteReader(query);
+            //while (reader.Read())
+            //{
+            //    organization.Id = Convert.ToInt32(reader["Id"]);
+            //    organization.Email = reader["Email"].ToString();
+            //}
+            //DataAccessClient.ConnectionClose();
+            DataMapper.GetOrganizationById(id,organization);
             return View(organization);
         }
 
@@ -114,7 +114,7 @@ namespace VforNGOss.Controllers
                 //DataAccessClient.ExecuteNonQuery(query, "email", organization.Email);
                 //DataAccessClient.ConnectionClose();
 
-                DataMapper.EditOrganizationrById(id, organization);
+                DataMapper.EditOrganizationById(id, organization);
 
                 return RedirectToAction(nameof(Index));
             }
