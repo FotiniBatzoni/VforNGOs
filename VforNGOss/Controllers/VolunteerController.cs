@@ -39,19 +39,15 @@ namespace VforNGOss.Controllers
         public ActionResult Create(Volunteer vol)
         {
             try
-            {
-                var volEmail = vol.Email;
-                //bool validEmail = Utilities.ValidateEmail.EmailIsValid(volEmail);
-                //if (!validEmail)
-                //{
-                //    MessageBox.Show("My message here");
-                //}
-                string query = "Insert into Volunteers (Email) values(@email)";
+            {                //var volEmail = vol.Email;
 
-                DataAccessClient.ExecuteNonQuery(query, "email", volEmail);
+                //string query = "Insert into Volunteers (Email) values(@email)";
 
-                DataAccessClient.ConnectionClose();
+                //DataAccessClient.ExecuteNonQuery(query, "email", volEmail);
 
+                //DataAccessClient.ConnectionClose();
+
+                DataMapper.PostVolunteer(vol);
                 return RedirectToAction(nameof(Index));
             }
             catch

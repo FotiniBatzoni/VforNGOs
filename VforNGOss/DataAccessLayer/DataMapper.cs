@@ -53,5 +53,18 @@ namespace VforNGOss.DataAccessLayer
 
             return organizationList;
         }
+
+        public static Volunteer PostVolunteer(Volunteer vol)
+        {
+            var volEmail = vol.Email;
+
+            string query = "Insert into Volunteers (Email) values(@email)";
+
+            DataAccessClient.ExecuteNonQuery(query, "email", volEmail);
+
+            DataAccessClient.ConnectionClose();
+
+            return vol;
+        }
     }
 }
