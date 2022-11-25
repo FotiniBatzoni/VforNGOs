@@ -64,16 +64,18 @@ namespace VforNGOss.Controllers
         // POST: OrganizationController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Organization org)
+        public ActionResult Create(Organization organization)
         {
             try
             {
-                var orgEmail = org.Email;
-                string query = "Insert into Organizations (Email) values(@email)";
+                //var orgEmail = org.Email;
+                //string query = "Insert into Organizations (Email) values(@email)";
 
-                DataAccessClient.ExecuteNonQuery(query, "email", orgEmail);
+                //DataAccessClient.ExecuteNonQuery(query, "email", orgEmail);
 
-                DataAccessClient.ConnectionClose();
+                //DataAccessClient.ConnectionClose();
+
+                DataMapper.PostOrganization(organization);
 
                 return RedirectToAction(nameof(Index));
             }
