@@ -155,5 +155,18 @@ namespace VforNGOss.DataAccessLayer
 
             return organization;
         }
+
+        public static Organization DeleteOrganizationById(int id)
+        {
+            Organization organization = new Organization();
+
+            string query = "Delete from Organizations where id = " + id;
+
+            DataAccessClient.ExecuteNonQuery(query);
+            DataAccessClient.ConnectionClose();
+
+            return organization;
+        }
+
     }
 }

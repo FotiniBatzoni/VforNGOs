@@ -127,10 +127,12 @@ namespace VforNGOss.Controllers
         // GET: OrganizationController/Delete/5
         public ActionResult Delete(int id)
         {
-            string query = "Delete from Organizations where id = " + id;
+            //string query = "Delete from Organizations where id = " + id;
 
-            DataAccessClient.ExecuteNonQuery(query);
-            DataAccessClient.ConnectionClose();
+            //DataAccessClient.ExecuteNonQuery(query);
+            //DataAccessClient.ConnectionClose();
+
+            DataMapper.DeleteOrganizationById(id);
             return RedirectToAction(nameof(Index));
         }
 
