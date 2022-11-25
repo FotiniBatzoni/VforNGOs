@@ -17,30 +17,6 @@ namespace VforNGOss.Controllers
         // GET: OrganizationController
         public ActionResult Index()
         {
-
-            //List<Organization> organizationList = new List<Organization>();
-            //OrganizationVM organizationVM = new OrganizationVM();
-
-            //string query = "SELECT *  FROM Organizations";
-
-
-            //SqlDataReader reader = DataAccessClient.ExecuteReader(query);
-
-            //// Call Read before accessing data.
-            //while (reader.Read())
-            //{
-            //    Organization organization = new Organization();
-            //    organization.Id = Convert.ToInt32(reader["Id"]);
-            //    organization.Email = reader["Email"].ToString();
-            //    organizationList.Add(organization);
-            //}
-
-            //organizationVM.OrganizationList = organizationList;
-
-            //reader.Close();
-
-            //DataAccessClient.ConnectionClose();
-
             OrganizationVM organizationVM = new OrganizationVM();
             organizationVM.OrganizationList = DataMapper.GetAllOrganizations();;
             return View(organizationVM);
@@ -68,13 +44,6 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                //var orgEmail = org.Email;
-                //string query = "Insert into Organizations (Email) values(@email)";
-
-                //DataAccessClient.ExecuteNonQuery(query, "email", orgEmail);
-
-                //DataAccessClient.ConnectionClose();
-
                 DataMapper.PostOrganization(organization);
 
                 return RedirectToAction(nameof(Index));
@@ -89,15 +58,7 @@ namespace VforNGOss.Controllers
         public ActionResult Edit(int id)
         {
             Organization organization = new Organization();
-            //string query = "SELECT *  FROM Organizations WHERE ID=" + id;
 
-            //SqlDataReader reader = DataAccessClient.ExecuteReader(query);
-            //while (reader.Read())
-            //{
-            //    organization.Id = Convert.ToInt32(reader["Id"]);
-            //    organization.Email = reader["Email"].ToString();
-            //}
-            //DataAccessClient.ConnectionClose();
             DataMapper.GetOrganizationById(id,organization);
             return View(organization);
         }
@@ -109,11 +70,6 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                //string query = "Update Organizations Set Email = @email Where id=" + id;
-
-                //DataAccessClient.ExecuteNonQuery(query, "email", organization.Email);
-                //DataAccessClient.ConnectionClose();
-
                 DataMapper.EditOrganizationById(id, organization);
 
                 return RedirectToAction(nameof(Index));
@@ -127,10 +83,6 @@ namespace VforNGOss.Controllers
         // GET: OrganizationController/Delete/5
         public ActionResult Delete(int id)
         {
-            //string query = "Delete from Organizations where id = " + id;
-
-            //DataAccessClient.ExecuteNonQuery(query);
-            //DataAccessClient.ConnectionClose();
 
             DataMapper.DeleteOrganizationById(id);
             return RedirectToAction(nameof(Index));
