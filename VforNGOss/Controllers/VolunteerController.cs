@@ -39,14 +39,7 @@ namespace VforNGOss.Controllers
         public ActionResult Create(Volunteer volunteer)
         {
             try
-            {                //var volEmail = vol.Email;
-
-                //string query = "Insert into Volunteers (Email) values(@email)";
-
-                //DataAccessClient.ExecuteNonQuery(query, "email", volEmail);
-
-                //DataAccessClient.ConnectionClose();
-
+            {              
                 DataMapper.PostVolunteer(volunteer);
                 return RedirectToAction(nameof(Index));
             }
@@ -60,16 +53,6 @@ namespace VforNGOss.Controllers
         public ActionResult Edit(int id)
         {
             Volunteer volunteer = new Volunteer();
-            //string query = "SELECT *  FROM Volunteers WHERE ID=" + id;
-
-            //SqlDataReader reader = DataAccessClient.ExecuteReader(query);
-            //   while (reader.Read())
-            //    {
-            //        volunteer.Id = Convert.ToInt32(reader["Id"]);
-            //        volunteer.Email = reader["Email"].ToString();
-            //    }
-            //DataAccessClient.ConnectionClose();
-
             DataMapper.GetVolunteerById(id,volunteer);
 
             return View(volunteer);
@@ -82,11 +65,6 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                //string query = "Update volunteers Set Email = @email Where id=" + id;
-
-                //DataAccessClient.ExecuteNonQuery(query, "email", volunteer.Email);
-                //DataAccessClient.ConnectionClose();
-
                 DataMapper.EditVolunteerById(id,volunteer);
 
                 return RedirectToAction(nameof(Index));
@@ -100,10 +78,6 @@ namespace VforNGOss.Controllers
         // GET: VolunteerController/Delete/5
         public ActionResult Delete(int id)
         {
-            //string query = "Delete from Volunteers where id = " + id;
-
-            //DataAccessClient.ExecuteNonQuery(query);
-            //DataAccessClient.ConnectionClose();
             DataMapper.DeleteVolunteerById(id);
 
             return RedirectToAction(nameof(Index));
