@@ -79,5 +79,16 @@ namespace VforNGOss.DataAccessLayer
 
             return organization;
         }
+
+        public static Volunteer EditVolunteerById(int id, Volunteer volunteer)
+        {
+            string query = "Update volunteers Set Email = @email Where id=" + id;
+
+            DataAccessClient.ExecuteNonQuery(query, "email", volunteer.Email);
+            DataAccessClient.ConnectionClose();
+
+
+            return volunteer;
+        }
     }
 }
