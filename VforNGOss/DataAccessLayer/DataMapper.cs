@@ -29,6 +29,56 @@ namespace VforNGOss.DataAccessLayer
             return volunteerList;
         }
 
+
+        public static Volunteer PostVolunteer(Volunteer volunteer)
+        {
+            var volEmail = volunteer.Email;
+
+            string query = "Insert into Volunteers (Email) values(@email)";
+
+            DataAccessClient.ExecuteNonQuery(query, "email", volEmail);
+
+            DataAccessClient.ConnectionClose();
+
+            return volunteer;
+        }
+
+
+
+        public static Volunteer GetVolunteerById(int id)
+        {
+            Volunteer volunteer = new Volunteer();
+            string query = "SELECT *  FROM Volunteers WHERE ID=" + id;
+
+            SqlDataReader reader = DataAccessClient.ExecuteReader(query);
+            while (reader.Read())
+            {
+                volunteer.Id = Convert.ToInt32(reader["Id"]);
+                volunteer.Email = reader["Email"].ToString();
+            }
+            DataAccessClient.ConnectionClose();
+
+            return volunteer;
+        }
+
+
+        public static Volunteer EditVolunteerById(int id, Volunteer volunteer)
+        {
+            string query = "Update volunteers Set Email = @email Where id=" + id;
+
+            DataAccessClient.ExecuteNonQuery(query, "email", volunteer.Email);
+            DataAccessClient.ConnectionClose();
+
+
+            return volunteer;
+        }
+
+
+
+
+
+
+
         public static List<Organization> GetAllOrganizations()
         {
             List<Organization> organizationList = new List<Organization>();
@@ -54,18 +104,8 @@ namespace VforNGOss.DataAccessLayer
             return organizationList;
         }
 
-        public static Volunteer PostVolunteer(Volunteer volunteer)
-        {
-            var volEmail = volunteer.Email;
 
-            string query = "Insert into Volunteers (Email) values(@email)";
 
-            DataAccessClient.ExecuteNonQuery(query, "email", volEmail);
-
-            DataAccessClient.ConnectionClose();
-
-            return volunteer;
-        }
 
         public static Organization PostOrganization(Organization organization)
         {
@@ -80,15 +120,16 @@ namespace VforNGOss.DataAccessLayer
             return organization;
         }
 
-        public static Volunteer EditVolunteerById(int id, Volunteer volunteer)
-        {
-            string query = "Update volunteers Set Email = @email Where id=" + id;
 
-            DataAccessClient.ExecuteNonQuery(query, "email", volunteer.Email);
+
+        public static Organization EditOrganizationrById(int id, Organization organization)
+        {
+            string query = "Update Organizations Set Email = @email Where id=" + id;
+
+            DataAccessClient.ExecuteNonQuery(query, "email", organization.Email);
             DataAccessClient.ConnectionClose();
 
-
-            return volunteer;
+            return organization;
         }
     }
 }

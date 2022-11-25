@@ -60,15 +60,18 @@ namespace VforNGOss.Controllers
         public ActionResult Edit(int id)
         {
             Volunteer volunteer = new Volunteer();
-            string query = "SELECT *  FROM Volunteers WHERE ID=" + id;
+            //string query = "SELECT *  FROM Volunteers WHERE ID=" + id;
 
-            SqlDataReader reader = DataAccessClient.ExecuteReader(query);
-               while (reader.Read())
-                {
-                    volunteer.Id = Convert.ToInt32(reader["Id"]);
-                    volunteer.Email = reader["Email"].ToString();
-                }
-            DataAccessClient.ConnectionClose();
+            //SqlDataReader reader = DataAccessClient.ExecuteReader(query);
+            //   while (reader.Read())
+            //    {
+            //        volunteer.Id = Convert.ToInt32(reader["Id"]);
+            //        volunteer.Email = reader["Email"].ToString();
+            //    }
+            //DataAccessClient.ConnectionClose();
+
+            DataMapper.GetVolunteerById(id);
+
             return View(volunteer);
         }
 

@@ -109,10 +109,12 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                string query = "Update Organizations Set Email = @email Where id=" + id;
+                //string query = "Update Organizations Set Email = @email Where id=" + id;
 
-                DataAccessClient.ExecuteNonQuery(query, "email", organization.Email);
-                DataAccessClient.ConnectionClose();
+                //DataAccessClient.ExecuteNonQuery(query, "email", organization.Email);
+                //DataAccessClient.ConnectionClose();
+
+                DataMapper.EditOrganizationrById(id, organization);
 
                 return RedirectToAction(nameof(Index));
             }
