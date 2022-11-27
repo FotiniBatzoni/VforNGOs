@@ -11,7 +11,7 @@ namespace VforNGOss.Controllers
     public ActionResult Index()
     {
             VolunteerVM volunteerVM = new VolunteerVM();
-            volunteerVM.VolunteerList = Repository.GetAllVolunteers();
+            volunteerVM.VolunteerList = RepositoryVolunteer.GetAllVolunteers();
             return View(volunteerVM);
     }
 
@@ -35,8 +35,8 @@ namespace VforNGOss.Controllers
         public ActionResult Create(Volunteer volunteer)
         {
             try
-            {              
-                Repository.PostVolunteer(volunteer);
+            {
+                RepositoryVolunteer.PostVolunteer(volunteer);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -49,7 +49,7 @@ namespace VforNGOss.Controllers
         public ActionResult Edit(int id)
         {
             Volunteer volunteer = new Volunteer();
-            Repository.GetVolunteerById(id,volunteer);
+            RepositoryVolunteer.GetVolunteerById(id,volunteer);
 
             return View(volunteer);
         }
@@ -61,7 +61,7 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                Repository.EditVolunteerById(id,volunteer);
+                RepositoryVolunteer.EditVolunteerById(id,volunteer);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -74,7 +74,7 @@ namespace VforNGOss.Controllers
         // GET: VolunteerController/Delete/5
         public ActionResult Delete(int id)
         {
-            Repository.DeleteVolunteerById(id);
+            RepositoryVolunteer.DeleteVolunteerById(id);
 
             return RedirectToAction(nameof(Index));
         }
