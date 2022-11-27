@@ -2,7 +2,7 @@
 
 namespace VforNGOss.Utilities
 {
-    public class ValidateEmail
+    public static class ValidateEmail
     {
         public static bool EmailIsValid(string email)
         {

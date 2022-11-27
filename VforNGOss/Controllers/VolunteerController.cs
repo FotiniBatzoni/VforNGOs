@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Mvc;
 using VforNGOss.DataAccessLayer;
 using VforNGOss.Models;
 using VforNGOss.ViewModels;
