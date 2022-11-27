@@ -17,6 +17,7 @@ namespace VforNGOss.Tests
 
         }
 
+
         [Test, Description("The given email is in incorrect format .com/en/etc is missing")]
         public void EmailIsValid_MissingDotPart()
         {
@@ -27,5 +28,17 @@ namespace VforNGOss.Tests
             Assert.AreEqual(false, isValid);
 
         }
+
+        [Test, Description("The given email is in incorrect format . is missing")]
+        public void EmailIsValid_MissingDot()
+        {
+            string email = "babis@gmailcom";
+
+            bool isValid = ValidateEmail.EmailIsValid(email);
+
+            Assert.AreEqual(false, isValid);
+
+        }
+
     }
 }
