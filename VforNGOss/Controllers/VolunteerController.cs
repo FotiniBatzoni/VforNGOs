@@ -49,7 +49,11 @@ namespace VforNGOss.Controllers
         public ActionResult Edit(int id)
         {
             Volunteer volunteer = new Volunteer();
-            RepositoryVolunteer.GetVolunteerById(id,volunteer);
+            volunteer = RepositoryVolunteer.GetVolunteerById(id,volunteer);
+            if (volunteer.Id == 0)
+            {
+                return View("_404NotFound");
+            }
 
             return View(volunteer);
         }
