@@ -50,7 +50,7 @@ namespace VforNGOss.DataAccessLayer
 
         public static Organization GetOrganizationById(int id, Organization organization)
         {
-            ;
+            
             string query = "SELECT *  FROM Organizations WHERE ID=" + id;
 
             SqlDataReader reader = DatabaseClient.ExecuteReader(query);
@@ -60,6 +60,7 @@ namespace VforNGOss.DataAccessLayer
                 organization.Email = reader["Email"].ToString();
             }
             DatabaseClient.ConnectionClose();
+ 
             return organization;
         }
 

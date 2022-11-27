@@ -55,8 +55,13 @@ namespace VforNGOss.Controllers
         {
             Organization organization = new Organization();
 
-            RepositoryOrganization.GetOrganizationById(id,organization);
+           organization =  RepositoryOrganization.GetOrganizationById(id,organization);
+            if(organization.Id == 0)
+            {
+                return View("_404NotFound");
+            }
             return View(organization);
+
         }
 
         // POST: OrganizationController/Edit/5
