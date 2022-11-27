@@ -40,5 +40,16 @@ namespace VforNGOss.Tests
 
         }
 
+        [Test, Description("The given email is in incorrect format @ is missing")]
+        public void EmailIsValid_MissingAt()
+        {
+            string email = "babisgmail.com";
+
+            bool isValid = ValidateEmail.EmailIsValid(email);
+
+            Assert.AreEqual(false, isValid);
+
+        }
+
     }
 }
