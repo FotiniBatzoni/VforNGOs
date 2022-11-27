@@ -14,7 +14,7 @@ namespace VforNGOss.Controllers
         public ActionResult Index()
         {
             OrganizationVM organizationVM = new OrganizationVM();
-            organizationVM.OrganizationList = Repository.GetAllOrganizations();;
+            organizationVM.OrganizationList = RepositoryOrganization.GetAllOrganizations();;
             return View(organizationVM);
         }
 
@@ -40,7 +40,7 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                Repository.PostOrganization(organization);
+                RepositoryOrganization.PostOrganization(organization);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -55,7 +55,7 @@ namespace VforNGOss.Controllers
         {
             Organization organization = new Organization();
 
-            Repository.GetOrganizationById(id,organization);
+            RepositoryOrganization.GetOrganizationById(id,organization);
             return View(organization);
         }
 
@@ -66,7 +66,7 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                Repository.EditOrganizationById(id, organization);
+                RepositoryOrganization.EditOrganizationById(id, organization);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -80,7 +80,7 @@ namespace VforNGOss.Controllers
         public ActionResult Delete(int id)
         {
 
-            Repository.DeleteOrganizationById(id);
+            RepositoryOrganization.DeleteOrganizationById(id);
             return RedirectToAction(nameof(Index));
         }
 
