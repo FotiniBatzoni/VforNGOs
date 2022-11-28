@@ -5,9 +5,10 @@ namespace VforNGOss.DataAccessLayer
 {
     public static class DatabaseClient 
     {
+        public const string ConnectionString = "Server= .; Database=VforNGOs;Trusted_Connection=True;";
         public static Int32 ExecuteNonQuery(String query, String parameterName, String value)
         {
-            using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -22,7 +23,7 @@ namespace VforNGOss.DataAccessLayer
 
         public static Int32 ExecuteNonQuery(String query)
         {
-            using (SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;"))
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -35,7 +36,7 @@ namespace VforNGOss.DataAccessLayer
         // Set the connection, command, and then execute the command with query and return the reader.  
         public static SqlDataReader ExecuteReader( String query)
         {
-            SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;");
+            SqlConnection conn = new SqlConnection(ConnectionString);
 
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -49,7 +50,7 @@ namespace VforNGOss.DataAccessLayer
 
         public static void ConnectionClose()
         {
-            SqlConnection conn = new SqlConnection("Server= .; Database=VforNGOs;Trusted_Connection=True;");
+            SqlConnection conn = new SqlConnection(ConnectionString);
             conn.Close();
         }
     }
