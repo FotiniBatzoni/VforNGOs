@@ -1,8 +1,9 @@
 ﻿using VforNGOss.Models;
+using VforNGOss.Repository.IRepository;
 
 namespace VforNGOss.Repository
 {
-    public interface IOrganization 
+    public interface IOrganization : IRepository<Organization>
     {
         IList<Organization> GetAll();
         Organization GetById(int? id);
