@@ -2,7 +2,7 @@
 
 namespace VforNGOss.Repository
 {
-    public interface IVolunteerRepository 
+    public interface IVolunteer
     {
             IList<Volunteer> GetAll();
             Volunteer GetById(int? id);

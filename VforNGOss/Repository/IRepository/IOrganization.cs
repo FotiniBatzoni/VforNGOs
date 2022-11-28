@@ -2,10 +2,10 @@
 
 namespace VforNGOss.Repository
 {
-    public interface IOrganization
+    public interface IOrganization 
     {
-        IList<Organization> GetOrganizations();
-        Organization GetOrganizationById(int? id);
+        IList<Organization> GetAll();
+        Organization GetById(int? id);
         void InsertNew(Organization organization);
         void Update(Organization organization);
         void Delete(Organization organization);
