@@ -1,4 +1,10 @@
-﻿namespace VforNGOss.DataAccessLayer
+﻿using Microsoft.AspNetCore.Connections;
+using System.Configuration;
+using System.Data;
+using System.Data.Common;
+using System.Net;
+
+namespace VforNGOss.DataAccessLayer
 {
     public class DbConnectionFactory : IConnectionFactory
     {
@@ -11,7 +17,7 @@
         {
             if (connectionName == null) throw new ArgumentNullException("connectionName");
 
-            var conStr = ConfigurationManager.ConnectionStrings[connectionName];
+            var conStr = System.Configuration.ConfigurationManager.ConnectionStrings[connectionName];
             if (conStr == null)
                 throw new ConfigurationErrorsException(string.Format("Failed to find connection string named '{0}' in app/web.config.", connectionName));
 
@@ -21,7 +27,12 @@
 
         }
 
-        public IDbConnection Create()
+        public ValueTask<ConnectionContext> ConnectAsync(EndPoint endpoint, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        IDbConnection Create()
         {
             var connection = _provider.CreateConnection();
             if (connection == null)
