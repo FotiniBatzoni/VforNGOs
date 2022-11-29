@@ -15,6 +15,6 @@ namespace VforNGOss.Repositories
 
         public Task Update(UpdateDTO projectDTO, int id);
 
-        public Task Delete(Guid id);
+        public Task Delete(int id);
     }
 }
