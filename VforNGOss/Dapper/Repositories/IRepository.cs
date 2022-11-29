@@ -1,4 +1,5 @@
-﻿using VforNGOss.DataTransefObjects;
+﻿using VforNGOss.Dapper.Entities;
+using VforNGOss.DataTransefObjects;
 
 namespace VforNGOss.Repositories
 {
@@ -6,13 +7,13 @@ namespace VforNGOss.Repositories
     {
         public Task Create(CreateDTO createDTO, int Id);
 
-        public Task<IEnumerable<TodoItem>> GetAll();
+        public Task<IEnumerable<Item>> GetAll();
 
-        public Task<TodoItem> GetById(Guid id);
+        public Task<Item> GetById(int id);
 
-        public Task<IEnumerable<TodoItem>> GetByUser(Guid id);
+        public Task<IEnumerable<Item>> GetByUser(int id);
 
-        public Task Update(UpdateTodoDTO projectDTO, Guid id);
+        public Task Update(UpdateDTO projectDTO, int id);
 
         public Task Delete(Guid id);
     }
