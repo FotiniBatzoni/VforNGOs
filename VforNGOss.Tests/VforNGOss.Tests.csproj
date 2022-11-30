@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VforNGOss\CRUDwithADO.csproj" />
+    <ProjectReference Include="..\VforNGOss\VforNGOs.csproj" />
   </ItemGroup>
 
 </Project>
