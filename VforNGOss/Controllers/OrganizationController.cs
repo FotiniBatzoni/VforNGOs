@@ -18,7 +18,8 @@ namespace VforNGOss.Controllers
 
 
         // GET: OrganizationController
-        public IActionResult Index()
+        [HttpGet]
+        public ActionResult Index()
         {
             try
             {
@@ -34,8 +35,50 @@ namespace VforNGOss.Controllers
 
         }
 
-    
 
+        // GET: OrganizationController/Details/5
+        [HttpGet]
+        [Route("id")]
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: OrganizationController/Create
+        [HttpGet]
+        [Route("Create")]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+
+        // POST: OrganizationController/Create
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public Task<IActionResult> Create(CreateDTO createDTO, int Id)
+        //{
+        //    //try
+        //    //{
+        //    //    RepositoryOrganization.PostOrganization(organization);
+
+        //    //    return RedirectToAction(nameof(Index));
+        //    //}
+        //    //catch
+        //    //{
+        //    //    return View();
+        //    //}
+
+        //    try
+        //    {
+        //        _organizationRepository.Create(createDTO, Id);
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
     }
 }

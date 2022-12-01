@@ -8,7 +8,7 @@ namespace VforNGOss.Dapper.Repositories
 
         public List<Organization> GetAll();
 
-       // Organization Add(Organization organization);
+        Organization Create(Organization organization);
        // Organization Update(Organization organization);
        // void Remove(int id);
        // void Save(Organization organization);

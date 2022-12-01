@@ -21,5 +21,21 @@ namespace VforNGOss.Dapper.Repositories
                 return organizations;
             }
         }
+
+
+        public Organization Create(Organization organization)
+        {
+            using (var connection = _context.CreateConnection())
+            {
+                var sql =
+                         "INSERT INTO Organizations (Email) VALUES(@Email); " +
+                          "SELECT CAST(SCOPE_IDENTITY() as int)";
+                var id = connection.Query<int>(sql, organization).Single();
+                organization.Id = id;
+                return organization;
+            }
+
+
+        }
     }
 }
