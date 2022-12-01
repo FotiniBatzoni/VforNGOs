@@ -34,7 +34,21 @@ namespace VforNGOss.Controllers
 
         }
 
+        // GET: VolunteerController/Details/5
+        [HttpGet]
+        [Route("id")]
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
 
+        // GET: VolunteerController/Create
+        [HttpGet]
+        [Route("Create")]
+        public ActionResult Create()
+        {
+            return View();
+        }
 
 
     }
