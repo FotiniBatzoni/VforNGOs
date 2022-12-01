@@ -8,7 +8,7 @@ namespace VforNGOss.Dapper.IRepositories
 
         public List<Volunteer> GetAll();
 
-        // Volunteer Add(Volunteer volunteer);
+        public Volunteer Create(Volunteer volunteer);
         // Volunteer Update(Volunteer volunteer);
         // void Remove(int id);
         // void Save(Volunteer volunteer);

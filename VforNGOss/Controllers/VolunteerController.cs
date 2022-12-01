@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VforNGOss.Dapper.IRepositories;
+using VforNGOss.Models;
 using VforNGOss.ViewModels;
 
 namespace VforNGOss.Controllers
@@ -48,6 +49,24 @@ namespace VforNGOss.Controllers
         public ActionResult Create()
         {
             return View();
+        }
+
+
+        // POST: VolunteerController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("Create")]
+        public ActionResult Create([FromForm] Volunteer volunteer)
+        {
+            try
+            {
+                _volunteerRepository.Create(volunteer);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
 
 

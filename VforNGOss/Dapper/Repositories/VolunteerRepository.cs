@@ -22,17 +22,25 @@ namespace VforNGOss.Dapper.Repositories
                 return volunteers;
             }
         }
+
+        public Volunteer Create(Volunteer volunteer)
+        {
+            using (var connection = _context.CreateConnection())
+            {
+                var sql =
+                         "INSERT INTO Volunteers (Email) VALUES(@Email); " +
+                          "SELECT CAST(SCOPE_IDENTITY() as int)";
+                var id = connection.Query<int>(sql, volunteer).Single();
+                volunteer.Id = id;
+                return volunteer;
+            }
+
+
+        }
     }
 
 
-    //public async Task<Volunteer> GetById(int id)
-    //{
-    //    string sqlQuery = "SELECT * FROM Organizations WHERE Id = @Id";
-    //    using (var connection = _context.CreateConnection())
-    //    {
-    //        return await connection.QuerySingleAsync<Volunteer>(sqlQuery, new { Id = id });
-    //    }
-    //}
+
 }
 
 
