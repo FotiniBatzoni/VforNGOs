@@ -24,14 +24,11 @@ namespace VforNGOss.Controllers
         // GET: OrganizationController
         public IActionResult Index()
         {
-            //OrganizationVM organizationVM = new OrganizationVM();
-            //organizationVM.OrganizationList = RepositoryOrganization.GetAllOrganizations();;
-            //return View(organizationVM);
-
             try
             {
-                var Data =  _organizationRepository.GetAll();
-                return View(Data);
+                OrganizationVM organizationVM = new OrganizationVM();
+                organizationVM.OrganizationList =  _organizationRepository.GetAll();
+                return View(organizationVM);
             }
             catch (Exception ex)
             {
