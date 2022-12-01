@@ -11,6 +11,6 @@ namespace VforNGOss.DataAccessLayer.DatabaseConnectionDapper
             _configuration = configuration;
         }
         public IDbConnection CreateConnection()
-            => new SqlConnection(_configuration.GetConnectionString("SqlConnection"));
+            => new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
     }
 }

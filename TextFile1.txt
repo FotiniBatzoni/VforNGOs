@@ -1,0 +1,128 @@
+
+        // GET: OrganizationController/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: OrganizationController/Create
+        public ActionResult Create()
+        {
+            return View("Create");
+        }
+
+        // POST: OrganizationController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public Task<IActionResult> Create(CreateDTO createDTO, int Id)
+        {
+            //try
+            //{
+            //    RepositoryOrganization.PostOrganization(organization);
+
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
+
+            try
+            {
+                _organizationRepository.Create(createDTO, Id);
+                  return RedirectToAction(nameof(Index));
+            }
+            catch 
+            {
+                return View();
+            }
+        }
+
+        // GET: OrganizationController/Edit/5
+        public Task<IActionResult> Update(UpdateDTO updateDTO, int Id)
+        {
+            // Organization organization = new Organization();
+
+            //organization =  RepositoryOrganization.GetOrganizationById(id,organization);
+            // if(organization.Id == 0)
+            // {
+            //     return View("_404NotFound");
+            // }
+            // return View(organization);
+
+
+            Organization organization = new Organization();
+            try
+            {
+                _organizationRepository.Update(updateDTO, Id);
+                return View(organization);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, ex.Message);
+            }
+
+        }
+
+        // POST: OrganizationController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, Organization organization)
+        {
+            //try
+            //{
+            //    RepositoryOrganization.EditOrganizationById(id, organization);
+
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
+        }
+
+        // GET: OrganizationController/Delete/5
+        public Task<IActionResult> Delete(int Id)
+        {
+
+            //RepositoryOrganization.DeleteOrganizationById(id);
+            //return RedirectToAction(nameof(Index));
+            try
+            {
+                _organizationRepository.Delete(Id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            }
+        }
+
+            // POST: OrganizationController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public Task<IActionResult> Delete(int Id)
+        {
+            //try
+            //{
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
+
+            try
+            {
+                _organizationRepository.Delete(Id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            }
+        }

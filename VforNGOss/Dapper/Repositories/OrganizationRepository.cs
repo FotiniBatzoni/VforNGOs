@@ -17,7 +17,7 @@ namespace VforNGOss.Dapper.Repositories
             using (var connection = _context.CreateConnection())
             {
                 var organizations = await connection.QueryAsync<Organization>(sqlQuery);
-                return organizations.ToList();
+                return organizations;
             }
         }
 
