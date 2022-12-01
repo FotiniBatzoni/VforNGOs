@@ -6,7 +6,7 @@ namespace VforNGOss.Dapper.Repositories
     {
        // public Task Create(CreateDTO createDTO, int Id);
 
-        public List<Organization> GetAll(();
+        public List<Organization> GetAll();
 
        // public Task<Item> GetById(int id);
 

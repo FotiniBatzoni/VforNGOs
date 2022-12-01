@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VforNGOss.Dapper.Repositories;
 using VforNGOss.DataAccessLayer;
-using VforNGOss.DataTransefObjects;
 using VforNGOss.Models;
-using VforNGOss.Repositories;
 using VforNGOss.ViewModels;
 
 namespace VforNGOss.Controllers

@@ -7,27 +7,10 @@ namespace VforNGOss.Dapper.Repositories
     public class OrganizationRepository : IOrganizationRepository
     {
         private readonly DapperContext _context;
-        public OrganizationRepository(DapperContext context)
-        {
-            _context = context;
-        }
-        public async Task<IEnumerable<Organization>> GetAll()
-        {
-            string sqlQuery = "SELECT * FROM Organizations";
-            using (var connection = _context.CreateConnection())
-            {
-                var organizations = await connection.QueryAsync<Organization>(sqlQuery);
-                return organizations;
-            }
-        }
 
-        public async Task<Organization> GetById(int id)
+        public List<Organization> GetAll()
         {
-            string sqlQuery = "SELECT * FROM Organizations WHERE Id = @Id";
-            using (var connection = _context.CreateConnection())
-            {
-                return await connection.QuerySingleAsync<Organization>(sqlQuery, new { Id = id });
-            }
+            throw new NotImplementedException();
         }
     }
 }
