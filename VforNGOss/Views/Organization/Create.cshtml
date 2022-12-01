@@ -1,6 +1,7 @@
 ﻿@model VforNGOss.Models.Organization;
 
-<form method="post">
+@using (Html.BeginForm("Create","Organization" ))
+{
   <fieldset>
     <legend>Register Organization</legend>
     <div class="form-group">
@@ -10,4 +11,4 @@
     </div>
   <input type="submit" value="Submit" class="btn btn-secondary btn-lg mt-4"/>
   </fieldset>
-</form>
+}

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VforNGOss.Dapper.Repositories;
+using VforNGOss.Models;
 using VforNGOss.ViewModels;
 
 namespace VforNGOss.Controllers
@@ -54,31 +55,21 @@ namespace VforNGOss.Controllers
 
 
         // POST: OrganizationController/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public Task<IActionResult> Create(CreateDTO createDTO, int Id)
-        //{
-        //    //try
-        //    //{
-        //    //    RepositoryOrganization.PostOrganization(organization);
-
-        //    //    return RedirectToAction(nameof(Index));
-        //    //}
-        //    //catch
-        //    //{
-        //    //    return View();
-        //    //}
-
-        //    try
-        //    {
-        //        _organizationRepository.Create(createDTO, Id);
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("Create")]
+        public ActionResult Create([FromForm] Organization organization)
+        {
+            try
+            {
+                _organizationRepository.Create(organization);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
     }
 }
