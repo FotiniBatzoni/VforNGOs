@@ -4,15 +4,14 @@ namespace VforNGOss.Dapper.Repositories
 {
     public interface IOrganizationRepository
     {
-       // public Task Create(CreateDTO createDTO, int Id);
+       // Organization Find(int id);
 
         public List<Organization> GetAll();
 
-       // public Task<Item> GetById(int id);
+       // Organization Add(Organization organization);
+       // Organization Update(Organization organization);
+       // void Remove(int id);
+       // void Save(Organization organization);
 
-
-      //  public Task Update(UpdateDTO projectDTO, int id);
-
-       // public Task Delete(int id);
     }
 }

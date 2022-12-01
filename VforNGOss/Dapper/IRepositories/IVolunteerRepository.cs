@@ -4,8 +4,13 @@ namespace VforNGOss.Dapper.Repositories
 {
     public interface IVolunteerRepository
     {
-        public Task<IEnumerable<Volunteer>> GetAll();
+        // Volunteer Find(int id);
 
-        public Task<Volunteer> GetById(int id);
+        public List<Volunteer> GetAll();
+
+        // Volunteer Add(Volunteer volunteer);
+        // Volunteer Update(Volunteer volunteer);
+        // void Remove(int id);
+        // void Save(Volunteer volunteer);
     }
 }
