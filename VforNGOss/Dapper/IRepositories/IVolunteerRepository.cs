@@ -1,6 +1,6 @@
 ﻿using VforNGOss.Models;
 
-namespace VforNGOss.Dapper.Repositories
+namespace VforNGOss.Dapper.IRepositories
 {
     public interface IVolunteerRepository
     {
@@ -14,3 +14,5 @@ namespace VforNGOss.Dapper.Repositories
         // void Save(Volunteer volunteer);
     }
 }
+
+

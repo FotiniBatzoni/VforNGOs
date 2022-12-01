@@ -1,3 +1,4 @@
+using VforNGOss.Dapper.IRepositories;
 using VforNGOss.Dapper.Repositories;
 using VforNGOss.DataAccessLayer.DatabaseConnectionDapper;
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<DapperContext>(); // Add this line to register the service
 
 builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+builder.Services.AddScoped<IVolunteerRepository, VolunteerRepository>();
 
 
 // Add services to the container.

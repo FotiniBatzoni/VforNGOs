@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VforNGOss.Dapper.Repositories;
-using VforNGOss.DataAccessLayer;
-using VforNGOss.Models;
 using VforNGOss.ViewModels;
 
 namespace VforNGOss.Controllers
@@ -10,12 +8,10 @@ namespace VforNGOss.Controllers
     [Route("[controller]")]
     public class OrganizationController : Controller
     {
-        private readonly ILogger<Controller> _logger;
         private readonly IOrganizationRepository _organizationRepository;
 
-        public OrganizationController(ILogger<Controller> logger, IOrganizationRepository organizationRepository)
+        public OrganizationController( IOrganizationRepository organizationRepository)
         {
-            _logger = logger;
             _organizationRepository = organizationRepository;
         }
 
