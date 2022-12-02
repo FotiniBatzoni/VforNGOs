@@ -103,5 +103,43 @@ namespace VforNGOss.Controllers
                 return View();
             }
         }
+
+
+        // GET: VolunteerController/Delete/5
+        [HttpGet]
+        [Route("Delete")]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                _volunteerRepository.Remove(id);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+
+            }
+
+        }
+
+        // POST: VolunteerController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("Delete")]
+        public ActionResult Delete(int id, Volunteer volunteer)
+        {
+
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
     }
 }

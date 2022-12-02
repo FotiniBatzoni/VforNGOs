@@ -11,7 +11,7 @@ namespace VforNGOss.Dapper.IRepositories
         public Volunteer Create(Volunteer volunteer);
 
         public  Volunteer Update(Volunteer volunteer);
-        // void Remove(int id);
+        public void Remove(int id);
         // void Save(Volunteer volunteer);
     }
 }

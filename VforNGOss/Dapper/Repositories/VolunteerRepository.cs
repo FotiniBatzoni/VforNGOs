@@ -61,6 +61,16 @@ namespace VforNGOss.Dapper.Repositories
                 return volunteer;
             }
         }
+
+
+        public void Remove(int id)
+        {
+            using (var connection = _context.CreateConnection())
+            {
+                connection.Execute("DELETE FROM Volunteers WHERE Id = @Id", new { id });
+            }
+
+        }
     }
 
 }
