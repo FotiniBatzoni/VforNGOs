@@ -22,6 +22,14 @@ namespace VforNGOss.Dapper.Repositories
             }
         }
 
+        public Organization FindById(int id)
+        {
+            using (var connection = _context.CreateConnection())
+            {
+                return connection.Query<Organization>("SELECT * FROM Organizations WHERE Id = @Id", new { id }).SingleOrDefault();
+            }
+            
+        }
 
         public Organization Create(Organization organization)
         {
@@ -35,7 +43,15 @@ namespace VforNGOss.Dapper.Repositories
                 return organization;
             }
 
+        }
 
+        public Organization Update(Organization organization)
+        {
+            var connection = _context.CreateConnection();
+            connection.Execute("UPDATE Addresses " +
+                "SET Email = @Email, " +
+                "WHERE Id = @Id", organization);
+            return organization;
         }
     }
 }

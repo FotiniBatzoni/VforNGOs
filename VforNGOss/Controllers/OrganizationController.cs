@@ -71,5 +71,20 @@ namespace VforNGOss.Controllers
             }
         }
 
+        // GET: OrganizationController/Edit/5
+        [HttpGet]
+        [Route("Edit")]
+        public ActionResult Edit(int id)
+        {
+            Organization organization = new Organization();
+
+            organization = _organizationRepository.FindById(id);
+            if (organization.Id == 0)
+            {
+                return View("_404NotFound");
+            }
+            return View(organization);
+
+        }
     }
 }
