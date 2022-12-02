@@ -47,11 +47,21 @@ namespace VforNGOss.Dapper.Repositories
 
         public Organization Update(Organization organization)
         {
-            var connection = _context.CreateConnection();
-            connection.Execute("UPDATE Addresses " +
-                "SET Email = @Email, " +
-                "WHERE Id = @Id", organization);
-            return organization;
+
+            //Update Organizations
+            //Set Email = 'org4@mail.com'
+            //WHERE Id = 4;
+            using (var connection = _context.CreateConnection())
+            {
+                var sql = $"UPDATE Organizations SET Email = @Email WHERE Id = @Id";
+
+                var parameters = new DynamicParameters();
+                parameters.Add("@Email", organization.Email);
+                parameters.Add("@Id", organization.Id);
+
+                connection.Execute(sql, parameters);
+                return organization;
+            }
         }
     }
 }

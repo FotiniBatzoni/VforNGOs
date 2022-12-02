@@ -86,5 +86,24 @@ namespace VforNGOss.Controllers
             return View(organization);
 
         }
+
+
+        // POST: OrganizationController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("Edit")]
+        public ActionResult Edit([FromForm]  Organization organization)
+        {
+            try
+            {
+                _organizationRepository.Update(organization);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }
