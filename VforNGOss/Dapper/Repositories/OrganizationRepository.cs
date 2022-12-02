@@ -47,7 +47,6 @@ namespace VforNGOss.Dapper.Repositories
 
         public Organization Update(Organization organization)
         {
-
             //Update Organizations
             //Set Email = 'org4@mail.com'
             //WHERE Id = 4;

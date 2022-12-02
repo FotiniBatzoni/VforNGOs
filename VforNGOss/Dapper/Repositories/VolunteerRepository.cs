@@ -18,7 +18,7 @@ namespace VforNGOss.Dapper.Repositories
             string sqlQuery = "SELECT * FROM Volunteers";
             using (var connection = _context.CreateConnection())
             {
-                var volunteers =  connection.Query<Volunteer>(sqlQuery).ToList();
+                var volunteers = connection.Query<Volunteer>(sqlQuery).ToList();
                 return volunteers;
             }
         }
@@ -46,9 +46,22 @@ namespace VforNGOss.Dapper.Repositories
             }
 
         }
+
+        public Volunteer Update(Volunteer volunteer)
+        {
+            using (var connection = _context.CreateConnection())
+            {
+                var sql = $"UPDATE Volunteers SET Email = @Email WHERE Id = @Id";
+
+                var parameters = new DynamicParameters();
+                parameters.Add("@Email", volunteer.Email);
+                parameters.Add("@Id", volunteer.Id);
+
+                connection.Execute(sql, parameters);
+                return volunteer;
+            }
+        }
     }
-
-
 
 }
 

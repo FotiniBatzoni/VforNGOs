@@ -84,5 +84,24 @@ namespace VforNGOss.Controllers
             return View(volunteer);
 
         }
+
+
+        // POST: VolunteerController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("Edit")]
+        public ActionResult Edit([FromForm] Volunteer volunteer)
+        {
+            try
+            {
+                _volunteerRepository.Update(volunteer);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }
