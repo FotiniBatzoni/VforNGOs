@@ -12,7 +12,7 @@ namespace VforNGOss.Dapper.Repositories
 
         public Organization Update(Organization organization);
 
-       // void Remove(int id);
+       void Remove(int id);
        // void Save(Organization organization);
 
     }

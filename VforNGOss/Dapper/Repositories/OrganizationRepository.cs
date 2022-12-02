@@ -62,5 +62,14 @@ namespace VforNGOss.Dapper.Repositories
                 return organization;
             }
         }
+
+        public void Remove(int id)
+        {
+            using (var connection = _context.CreateConnection())
+            {
+                connection.Execute("DELETE FROM Organizations WHERE Id = @Id", new { id });
+            }
+                
+        }
     }
 }

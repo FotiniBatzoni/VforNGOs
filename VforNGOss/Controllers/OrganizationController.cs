@@ -11,7 +11,7 @@ namespace VforNGOss.Controllers
     {
         private readonly IOrganizationRepository _organizationRepository;
 
-        public OrganizationController( IOrganizationRepository organizationRepository)
+        public OrganizationController(IOrganizationRepository organizationRepository)
         {
             _organizationRepository = organizationRepository;
         }
@@ -25,7 +25,7 @@ namespace VforNGOss.Controllers
             try
             {
                 OrganizationVM organizationVM = new OrganizationVM();
-                organizationVM.OrganizationList =  _organizationRepository.GetAll();
+                organizationVM.OrganizationList = _organizationRepository.GetAll();
                 return View(organizationVM);
             }
             catch (Exception ex)
@@ -92,7 +92,7 @@ namespace VforNGOss.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("Edit")]
-        public ActionResult Edit([FromForm]  Organization organization)
+        public ActionResult Edit([FromForm] Organization organization)
         {
             try
             {
@@ -104,6 +104,44 @@ namespace VforNGOss.Controllers
             {
                 return View();
             }
+        }
+
+
+        // GET: OrganizationController/Delete/5
+        [HttpGet]
+        [Route("Delete")]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                _organizationRepository.Remove(id);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+
+            }
+
+        }
+
+        // POST: OrganizationController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("Delete")]
+        public ActionResult Delete(int id, Organization organization)
+        {
+
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+
         }
     }
 }
