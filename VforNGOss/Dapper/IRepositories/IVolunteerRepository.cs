@@ -4,9 +4,9 @@ namespace VforNGOss.Dapper.IRepositories
 {
     public interface IVolunteerRepository
     {
-        // Volunteer Find(int id);
-
         public List<Volunteer> GetAll();
+
+        public Volunteer FindById(int id);
 
         public Volunteer Create(Volunteer volunteer);
         // Volunteer Update(Volunteer volunteer);

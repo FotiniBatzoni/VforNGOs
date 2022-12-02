@@ -69,6 +69,20 @@ namespace VforNGOss.Controllers
             }
         }
 
+        // GET: VolunteerController/Edit/5
+        [HttpGet]
+        [Route("Edit")]
+        public ActionResult Edit(int id)
+        {
+            Volunteer volunteer = new Volunteer();
 
+            volunteer = _volunteerRepository.FindById(id);
+            if (volunteer.Id == 0)
+            {
+                return View("_404NotFound");
+            }
+            return View(volunteer);
+
+        }
     }
 }

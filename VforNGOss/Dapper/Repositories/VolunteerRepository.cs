@@ -23,6 +23,16 @@ namespace VforNGOss.Dapper.Repositories
             }
         }
 
+
+        public Volunteer FindById(int id)
+        {
+            using (var connection = _context.CreateConnection())
+            {
+                return connection.Query<Volunteer>("SELECT * FROM Volunteers WHERE Id = @Id", new { id }).SingleOrDefault();
+            }
+
+        }
+
         public Volunteer Create(Volunteer volunteer)
         {
             using (var connection = _context.CreateConnection())
@@ -34,7 +44,6 @@ namespace VforNGOss.Dapper.Repositories
                 volunteer.Id = id;
                 return volunteer;
             }
-
 
         }
     }
