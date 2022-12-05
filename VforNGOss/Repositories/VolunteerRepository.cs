@@ -37,11 +37,12 @@ namespace VforNGOss.Dapper.Repositories
         {
             using (var connection = _context.CreateConnection())
             {
+                var id = Guid.NewGuid();
                 var sql =
-                         "INSERT INTO Volunteers (Email) VALUES(@Email); " +
-                          "SELECT CAST(SCOPE_IDENTITY() as int)";
-                var id = connection.Query<int>(sql, volunteer).Single();
+                         "INSERT INTO Volunteers ( Id, Email, Password) VALUES(@id, @Email, @Password)";
                 volunteer.Id = id;
+                connection.Execute(sql, volunteer);
+
                 return volunteer;
             }
 

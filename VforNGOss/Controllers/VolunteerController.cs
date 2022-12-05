@@ -77,10 +77,10 @@ namespace VforNGOss.Controllers
             Volunteer volunteer = new Volunteer();
 
             volunteer = _volunteerRepository.FindById(id);
-            if (volunteer.Id == 0)
-            {
-                return View("_404NotFound");
-            }
+            //if (volunteer.Id == 0)
+            //{
+            //    return View("_404NotFound");
+            //}
             return View(volunteer);
 
         }
