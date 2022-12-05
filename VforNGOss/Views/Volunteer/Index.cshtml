@@ -9,7 +9,7 @@
 <table class="table table-hover mt-4">
   <thead>
     <tr>
-      <th scope="col">Id</th>
+  @*    <th scope="col">Id</th>*@
       <th scope="col">Email</th>
     </tr>
   </thead>
@@ -17,9 +17,9 @@
         @foreach(var obj in @Model.VolunteerList)
         {
            <tr class="table-secondary">
-                <td width="10%">
+@*                <td width="10%">
                     @obj.Id
-                </td>
+                </td>*@
                 <td width="55%">
                     @obj.Email
                 </td>
