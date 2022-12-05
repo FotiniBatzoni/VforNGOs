@@ -37,6 +37,9 @@ namespace VforNGOss.Dapper.Repositories
         {
             using (var connection = _context.CreateConnection())
             {
+                string hashedPassword = SecurePasswordHasher.HashPassword(volunteer.Password);
+                volunteer.Password = hashedPassword;
+
                 var id = Guid.NewGuid();
                 var sql =
                          "INSERT INTO Volunteers ( Id, Email, Password) VALUES(@id, @Email, @Password)";
