@@ -1,6 +1,8 @@
 ﻿using Dapper;
 using VforNGOss.DataAccessLayer.DatabaseConnectionDapper;
 using VforNGOss.Models;
+using VforNGOss.Utilities;
+
 
 namespace VforNGOss.Dapper.Repositories
 {
@@ -35,9 +37,13 @@ namespace VforNGOss.Dapper.Repositories
         {
             using (var connection = _context.CreateConnection())
             {
+                
+                string hashedPassword = SecurePasswordHasher.HashPassword(organization.Password);
+                organization.Password = hashedPassword;
                 var id = Guid.NewGuid();
                 var sql =
                          "INSERT INTO Organizations ( Id, Email, Password) VALUES(@id, @Email, @Password)";
+
                 organization.Id = id;
                 connection.Execute(sql, organization);
              

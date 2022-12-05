@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
 
-public static class Hasher
+public static class SecurePasswordHasher
 {
     public static string HashPassword(string password)
     {
