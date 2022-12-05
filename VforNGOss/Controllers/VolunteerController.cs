@@ -72,7 +72,7 @@ namespace VforNGOss.Controllers
         // GET: VolunteerController/Edit/5
         [HttpGet]
         [Route("Edit")]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
             Volunteer volunteer = new Volunteer();
 
@@ -108,7 +108,7 @@ namespace VforNGOss.Controllers
         // GET: VolunteerController/Delete/5
         [HttpGet]
         [Route("Delete")]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
             try
             {

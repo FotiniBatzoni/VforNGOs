@@ -6,12 +6,12 @@ namespace VforNGOss.Dapper.IRepositories
     {
         public List<Volunteer> GetAll();
 
-        public Volunteer FindById(int id);
+        public Volunteer FindById(Guid id);
 
         public Volunteer Create(Volunteer volunteer);
 
         public  Volunteer Update(Volunteer volunteer);
-        public void Remove(int id);
+        public void Remove(Guid id);
         // void Save(Volunteer volunteer);
     }
 }

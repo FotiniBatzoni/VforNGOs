@@ -24,11 +24,11 @@ namespace VforNGOss.Dapper.Repositories
         }
 
 
-        public Volunteer FindById(int id)
+        public Volunteer FindById(Guid id)
         {
             using (var connection = _context.CreateConnection())
             {
-                return connection.Query<Volunteer>("SELECT * FROM Volunteers WHERE Id = @Id", new { id }).SingleOrDefault();
+                return connection.Query<Volunteer>("SELECT * FROM Volunteers WHERE Id = @Id", new { id }).FirstOrDefault();
             }
 
         }
@@ -64,7 +64,7 @@ namespace VforNGOss.Dapper.Repositories
         }
 
 
-        public void Remove(int id)
+        public void Remove(Guid id)
         {
             using (var connection = _context.CreateConnection())
             {
