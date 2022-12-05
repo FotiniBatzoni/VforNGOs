@@ -6,13 +6,13 @@ namespace VforNGOss.Dapper.Repositories
     {
         public List<Organization> GetAll();
 
-       public Organization FindById(int id);
+       public Organization FindById(Guid id);
 
         public Organization Create(Organization organization);
 
         public Organization Update(Organization organization);
 
-       void Remove(int id);
+       void Remove(Guid id);
        // void Save(Organization organization);
 
     }

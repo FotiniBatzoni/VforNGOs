@@ -22,11 +22,11 @@ namespace VforNGOss.Dapper.Repositories
             }
         }
 
-        public Organization FindById(int id)
+        public Organization FindById(Guid id)
         {
             using (var connection = _context.CreateConnection())
             {
-                return connection.Query<Organization>("SELECT * FROM Organizations WHERE Id = @Id", new { id }).SingleOrDefault();
+                return connection.Query<Organization>("SELECT * FROM Organizations WHERE Id = @Id", new { id }).FirstOrDefault();
             }
             
         }
@@ -53,18 +53,19 @@ namespace VforNGOss.Dapper.Repositories
             //WHERE Id = 4;
             using (var connection = _context.CreateConnection())
             {
-                var sql = $"UPDATE Organizations SET Email = @Email WHERE Id = @Id";
+                var sql = $"UPDATE Organizations SET Email = @Email, Password=@Password WHERE Id = @Id";
 
                 var parameters = new DynamicParameters();
                 parameters.Add("@Email", organization.Email);
                 parameters.Add("@Id", organization.Id);
+                parameters.Add("@Password", organization.Password);
 
                 connection.Execute(sql, parameters);
                 return organization;
             }
         }
 
-        public void Remove(int id)
+        public void Remove(Guid id)
         {
             using (var connection = _context.CreateConnection())
             {

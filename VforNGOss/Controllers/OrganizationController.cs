@@ -74,7 +74,7 @@ namespace VforNGOss.Controllers
         // GET: OrganizationController/Edit/5
         [HttpGet]
         [Route("Edit")]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
             Organization organization = new Organization();
 
@@ -110,7 +110,7 @@ namespace VforNGOss.Controllers
         // GET: OrganizationController/Delete/5
         [HttpGet]
         [Route("Delete")]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
             try
             {

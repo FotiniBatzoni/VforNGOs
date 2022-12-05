@@ -14,6 +14,7 @@
     <div class="form-group">
       <label for="exampleInputEmail1" class="form-label mt-4 fw-bold" >Email address</label>
           @Html.TextBoxFor(m => m.Email,  new {placeholder = @Html.DisplayNameFor(m=>m.Email) , type="email",@class="form-control"})
+          @Html.HiddenFor(m => m.Password)
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
     <button type="submit" class="btn btn-primary btn-lg mt-4">Edit</button>
