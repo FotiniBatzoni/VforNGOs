@@ -11,7 +11,7 @@ namespace VforNGOss.Models
 
         public string Password { get; set; }
 
-        public int Age { get; set; }
+        public int DateOfBirth { get; set; }
 
         public string City { get; set; }
 
