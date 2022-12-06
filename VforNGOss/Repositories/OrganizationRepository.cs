@@ -52,6 +52,34 @@ namespace VforNGOss.Dapper.Repositories
 
         }
 
+        public Organization ForgotPassword(Organization organization)
+        {
+            using (var connection = _context.CreateConnection())
+            {
+                string newPassword = organization.Password;
+
+                string hashedPassword = SecurePasswordHasher.HashPassword(newPassword);
+                organization.Password = hashedPassword;
+
+                var organizationDb = connection.Query<Organization>("SELECT * FROM Organizations WHERE Email = @Email", new { organization.Email}).FirstOrDefault();
+
+                if (organizationDb is null)
+                {
+                    return null;
+                }
+
+                var sql = $"UPDATE Organizations SET Password = @Password WHERE Id = @Id";
+
+                var parameters = new DynamicParameters();
+                parameters.Add("@Password", organization.Password);
+                parameters.Add("@Id",organizationDb.Id);
+
+                connection.Execute(sql, parameters);
+                return organization;
+            }
+
+        }
+
         public Organization Update(Organization organization)
         {
             //Update Organizations

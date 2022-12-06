@@ -77,6 +77,24 @@ namespace VforNGOss.Controllers
             return View();
         }
 
+
+        // POST: VolunteerController/ForgotPassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("ForgotPassword")]
+        public ActionResult ForgotPassword([FromForm] Volunteer volunteer)
+        {
+            try
+            {
+                _volunteerRepository.ForgotPassword(volunteer);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         // GET: VolunteerController/Edit/5
         [HttpGet]
         [Route("Edit")]

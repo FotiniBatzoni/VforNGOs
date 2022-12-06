@@ -12,7 +12,9 @@ namespace VforNGOss.Dapper.Repositories
 
         public Organization Update(Organization organization);
 
-       void Remove(Guid id);
+        public Organization ForgotPassword(Organization organization);
+
+        void Remove(Guid id);
        // void Save(Organization organization);
 
     }

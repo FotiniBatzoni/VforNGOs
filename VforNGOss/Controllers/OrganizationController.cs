@@ -53,13 +53,7 @@ namespace VforNGOss.Controllers
             return View();
         }
 
-        // GET: OrganizationController/ForgotPassword
-        [HttpGet]
-        [Route("ForgotPassword")]
-        public ActionResult ForgotPassword()
-        {
-            return View();
-        }
+
 
 
         // POST: OrganizationController/Create
@@ -78,6 +72,33 @@ namespace VforNGOss.Controllers
                 return View();
             }
         }
+
+        // GET: OrganizationController/ForgotPassword
+        [HttpGet]
+        [Route("ForgotPassword")]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+
+        // POST: OrganizationController/ForgotPassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("ForgotPassword")]
+        public ActionResult ForgotPassword([FromForm] Organization organization)
+        {
+            try
+            {
+                _organizationRepository.ForgotPassword(organization);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
         // GET: OrganizationController/Edit/5
         [HttpGet]
