@@ -86,7 +86,13 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                _volunteerRepository.ForgotPassword(volunteer);
+               var volunteerDb =  _volunteerRepository.ForgotPassword(volunteer);
+
+                if(volunteerDb == null)
+                {
+                    throw new Exception("Incorrect Email");
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             catch

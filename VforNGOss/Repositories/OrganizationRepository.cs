@@ -56,17 +56,18 @@ namespace VforNGOss.Dapper.Repositories
         {
             using (var connection = _context.CreateConnection())
             {
-                string newPassword = organization.Password;
-
-                string hashedPassword = SecurePasswordHasher.HashPassword(newPassword);
-                organization.Password = hashedPassword;
-
-                var organizationDb = connection.Query<Organization>("SELECT * FROM Organizations WHERE Email = @Email", new { organization.Email}).FirstOrDefault();
+                var organizationDb = connection.Query<Organization>("SELECT * FROM Organizations WHERE Email = @Email", new { organization.Email }).FirstOrDefault();
 
                 if (organizationDb is null)
                 {
                     return null;
                 }
+
+                string newPassword = organization.Password;
+
+                string hashedPassword = SecurePasswordHasher.HashPassword(newPassword);
+                organization.Password = hashedPassword;
+
 
                 var sql = $"UPDATE Organizations SET Password = @Password WHERE Id = @Id";
 

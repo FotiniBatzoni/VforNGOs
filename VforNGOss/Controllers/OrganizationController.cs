@@ -90,7 +90,12 @@ namespace VforNGOss.Controllers
         {
             try
             {
-                _organizationRepository.ForgotPassword(organization);
+               var organizationDb =  _organizationRepository.ForgotPassword(organization);
+
+                if (organizationDb == null)
+                {
+                    throw new Exception("Incorrect Email");
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
