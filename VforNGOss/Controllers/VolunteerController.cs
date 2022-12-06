@@ -69,6 +69,14 @@ namespace VforNGOss.Controllers
             }
         }
 
+        // GET: OrganizationController/ForgotPassword
+        [HttpGet]
+        [Route("ForgotPassword")]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
         // GET: VolunteerController/Edit/5
         [HttpGet]
         [Route("Edit")]
