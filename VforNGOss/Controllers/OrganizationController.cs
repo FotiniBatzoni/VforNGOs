@@ -53,6 +53,14 @@ namespace VforNGOss.Controllers
             return View();
         }
 
+        // GET: OrganizationController/ForgotPassword
+        [HttpGet]
+        [Route("ForgotPassword")]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
 
         // POST: OrganizationController/Create
         [HttpPost]
