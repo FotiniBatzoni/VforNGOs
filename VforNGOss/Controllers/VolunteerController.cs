@@ -62,7 +62,7 @@ namespace VforNGOss.Controllers
             try
             {
                 _volunteerRepository.Create(volunteer);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -95,7 +95,7 @@ namespace VforNGOss.Controllers
                     return View();
                 }
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -130,7 +130,7 @@ namespace VforNGOss.Controllers
             {
                 _volunteerRepository.Update(volunteer);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -148,7 +148,7 @@ namespace VforNGOss.Controllers
             {
                 _volunteerRepository.Remove(id);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -167,7 +167,7 @@ namespace VforNGOss.Controllers
 
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
