@@ -94,7 +94,8 @@ namespace VforNGOss.Controllers
 
                 if (organizationDb == null)
                 {
-                    throw new Exception("Incorrect Email");
+                    ViewBag.emailnotfoundmsg = "Email doesn't exist";
+                    return View();
                 }
                 return RedirectToAction(nameof(Index));
             }
