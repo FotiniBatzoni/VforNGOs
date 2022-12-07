@@ -3,6 +3,7 @@ using VforNGOss.Dapper.IRepositories;
 using VforNGOss.Models;
 using VforNGOss.ViewModels;
 
+
 namespace VforNGOss.Controllers
 {
     [ApiController]
@@ -90,7 +91,8 @@ namespace VforNGOss.Controllers
 
                 if(volunteerDb == null)
                 {
-                    throw new Exception("Incorrect Email");
+                    ViewBag.emailnotfoundmsg = "Email doesn't exist";
+                    return View();
                 }
 
                 return RedirectToAction(nameof(Index));
