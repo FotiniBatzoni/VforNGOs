@@ -65,7 +65,7 @@ namespace VforNGOss.Controllers
             try
             {
                 _organizationRepository.Create(organization);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -97,7 +97,7 @@ namespace VforNGOss.Controllers
                     ViewBag.emailnotfoundmsg = "Email doesn't exist";
                     return View();
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -133,7 +133,7 @@ namespace VforNGOss.Controllers
             {
                 _organizationRepository.Update(organization);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -151,7 +151,7 @@ namespace VforNGOss.Controllers
             {
                 _organizationRepository.Remove(id);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -170,7 +170,7 @@ namespace VforNGOss.Controllers
 
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
