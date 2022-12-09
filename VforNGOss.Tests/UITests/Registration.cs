@@ -16,23 +16,28 @@ namespace VforNGOss.Tests.UITests
             driver = new ChromeDriver();
         }
 
-        [Test, Description("Reguister a User")]
-        public void RegisterAUser()
+        [Test, Description("Register an Organization")]
+        public void RegisterAnOrganization()
         {
-            driver.Navigate().GoToUrl("https://localhost:7211/");
+            driver.Navigate().GoToUrl("https://localhost:7211");
+            IWebElement AreUOrg = driver.FindElement(By.Id("ruorg"));
+            AreUOrg.Click();
             Assert.Pass();
-                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-                //IWebElement AreUOrg = driver.FindElement(By.Id("ruorg"));
-                //AreUOrg.Click();
-                //Console.WriteLine("lala");
-             
+        }
 
+        [Test, Description("Register a Volunteer")]
+        public void RegisterAVolunteer()
+        {
+            driver.Navigate().GoToUrl("https://localhost:7211");
+            IWebElement AreUVol = driver.FindElement(By.Id("ruvol"));
+            AreUVol.Click();
+            Assert.Pass();
         }
 
         [OneTimeTearDown]
         public void CloseTest()
         {
-          // driver.Close();
+          driver.Close();
         }
     }
 }
