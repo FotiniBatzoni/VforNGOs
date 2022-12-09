@@ -27,14 +27,16 @@ namespace VforNGOss.Tests.UITests
             Assert.Pass();
         }
 
-        //[Test, Description("Register a Volunteer")]
-        //public void RegisterAVolunteer()
-        //{
-        //    driver.Navigate().GoToUrl("https://localhost:7211");
-        //    IWebElement AreUVol = driver.FindElement(By.Id("ruvol"));
-        //    AreUVol.Click();
-        //    Assert.Pass();
-        //}
+        [Test, Description("Display a Volunteer")]
+        public void DisplayAVolunteer()
+        {
+            driver.Navigate().GoToUrl("https://localhost:7211");
+            IWebElement Display = driver.FindElement(By.Id("display"));
+            Display.Click();
+            IWebElement Vol = driver.FindElement(By.Id("vol"));
+            Vol.Click();
+            Assert.Pass();
+        }
 
         [OneTimeTearDown]
         public void CloseTest()
