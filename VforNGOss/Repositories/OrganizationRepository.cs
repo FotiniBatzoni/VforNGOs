@@ -6,8 +6,7 @@ using VforNGOss.Utilities;
 
 namespace VforNGOss.Dapper.Repositories
 {
-   // public class OrganizationRepository : IOrganizationRepository
-    public class OrganizationRepository
+    public class OrganizationRepository : IOrganizationRepository
     {
         private readonly DapperContext _context;
         public OrganizationRepository(DapperContext context)

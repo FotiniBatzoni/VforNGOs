@@ -10,16 +10,13 @@ namespace VforNGOss.Tests.UITests
     [TestFixture, Description("Create")]
     public class Create
     {
-        OrganizationRepository _organization;
+        IOrganizationRepository _organization;
         IWebDriver driver;
 
         [OneTimeSetUp]
         public void StartChrome()
         {
             driver = new ChromeDriver();
-            DapperContext context;
-            context = new DapperContext();
-            _organization = new OrganizationRepository();
           
         }
 

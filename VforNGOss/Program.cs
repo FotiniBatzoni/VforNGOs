@@ -1,4 +1,4 @@
-//using VforNGOss.Dapper.IRepositories;
+using VforNGOss.Dapper.IRepositories;
 using VforNGOss.Dapper.Repositories;
 using VforNGOss.DataAccessLayer.DatabaseConnectionDapper;
 using Microsoft.AspNetCore.Identity;
@@ -7,15 +7,11 @@ using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 //For Dapper
-//builder.Services.AddSingleton<DapperContext>(); // Add this line to register the service
-
-//builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
-//builder.Services.AddScoped<IVolunteerRepository, VolunteerRepository>();
-
 builder.Services.AddSingleton<DapperContext>(); // Add this line to register the service
 
-builder.Services.AddScoped<OrganizationRepository>();
-builder.Services.AddScoped<VolunteerRepository>();
+builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+builder.Services.AddScoped<IVolunteerRepository, VolunteerRepository>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
