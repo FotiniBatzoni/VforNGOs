@@ -6,7 +6,8 @@ using VforNGOss.Utilities;
 
 namespace VforNGOss.Dapper.Repositories
 {
-    public class OrganizationRepository : IOrganizationRepository
+   // public class OrganizationRepository : IOrganizationRepository
+    public class OrganizationRepository
     {
         private readonly DapperContext _context;
         public OrganizationRepository(DapperContext context)
@@ -31,6 +32,15 @@ namespace VforNGOss.Dapper.Repositories
                 return connection.Query<Organization>("SELECT * FROM Organizations WHERE Id = @Id", new { id }).FirstOrDefault();
             }
             
+        }
+
+        public Organization FindByEmail(string email)
+        {
+            using (var connection = _context.CreateConnection())
+            {
+                return connection.Query<Organization>("SELECT * FROM Organizations WHERE Email = @Email", new { email }).FirstOrDefault();
+            }
+
         }
 
         public Organization Create(Organization organization)

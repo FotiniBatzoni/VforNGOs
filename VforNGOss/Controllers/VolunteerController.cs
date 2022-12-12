@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using VforNGOss.Dapper.IRepositories;
+//using VforNGOss.Dapper.IRepositories;
+using VforNGOss.Dapper.Repositories;
 using VforNGOss.Models;
 using VforNGOss.ViewModels;
 
@@ -10,13 +11,19 @@ namespace VforNGOss.Controllers
     [Route("[controller]")]
     public class VolunteerController : Controller
     {
-        private readonly IVolunteerRepository _volunteerRepository;
+        //private readonly IVolunteerRepository _volunteerRepository;
 
-        public VolunteerController(IVolunteerRepository volunteerRepository)
+        //public VolunteerController(IVolunteerRepository volunteerRepository)
+        //{
+        //    _volunteerRepository = volunteerRepository;
+        //}
+
+        private readonly VolunteerRepository _volunteerRepository;
+
+        public VolunteerController(VolunteerRepository volunteerRepository)
         {
             _volunteerRepository = volunteerRepository;
         }
-
 
 
         // GET: VolunteerController

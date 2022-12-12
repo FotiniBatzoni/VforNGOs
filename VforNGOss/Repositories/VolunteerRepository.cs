@@ -1,11 +1,13 @@
 ﻿using Dapper;
-using VforNGOss.Dapper.IRepositories;
+//using VforNGOss.Dapper.IRepositories;
 using VforNGOss.DataAccessLayer.DatabaseConnectionDapper;
 using VforNGOss.Models;
 
 namespace VforNGOss.Dapper.Repositories
-{
-    public class VolunteerRepository : IVolunteerRepository
+{  
+    
+   // public class VolunteerRepository : IVolunteerRepository
+    public class VolunteerRepository 
     {
         private readonly DapperContext _context;
         public VolunteerRepository(DapperContext context)

@@ -1,48 +1,32 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using VforNGOss.Dapper.Repositories;
-using VforNGOss.DataAccessLayer.DatabaseConnectionDapper;
 
 namespace VforNGOss.Tests.UITests
 {
-
-    [TestFixture, Description("Create")]
-    public class Create
+    [TestFixture, Description("Delete")]
+    public class Delete
     {
-        OrganizationRepository _organization;
         IWebDriver driver;
 
         [OneTimeSetUp]
         public void StartChrome()
         {
             driver = new ChromeDriver();
-            DapperContext context;
-            context = new DapperContext();
-            _organization = new OrganizationRepository();
-          
         }
 
-        [Test, Description("Create an Organization")]
-        public void CreateAnOrganization()
+        [Test, Description("Delete an Organization")]
+        public void DeleteAnOrganization()
         {
             driver.Navigate().GoToUrl("https://localhost:7211");
             IWebElement AreUOrg = driver.FindElement(By.Id("ruorg"));
             AreUOrg.Click();
-            driver.FindElement(By.Id("email")).SendKeys("testing-org@mail.com");
+            driver.FindElement(By.Id("email")).SendKeys("testorgtest@mail.com");
             IWebElement passwordField = driver.FindElement(By.Id("password"));
             passwordField.SendKeys("progressnet");
             passwordField.Submit();
             Assert.Pass();
         }
-
-        [TearDown]
-        public void RunAfterAnyTests()
-        {
-            var organization = _organization.FindByEmail("testing-org@mail.com");
-            _organization.Remove(organization.Id);
-        }
-
 
         //[Test, Description("Create a Volunteer")]
         //public void CreateAVolunteer()
