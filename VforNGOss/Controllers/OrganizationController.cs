@@ -9,19 +9,13 @@ namespace VforNGOss.Controllers
     [Route("[controller]")]
     public class OrganizationController : Controller
     {
-        //private readonly IOrganizationRepository _organizationRepository;
+        private readonly IOrganizationRepository _organizationRepository;
 
-        //public OrganizationController(IOrganizationRepository organizationRepository)
-        //{
-        //    _organizationRepository = organizationRepository;
-        //}
-
-        private readonly OrganizationRepository _organizationRepository;
-
-        public OrganizationController(OrganizationRepository organizationRepository)
+        public OrganizationController(IOrganizationRepository organizationRepository)
         {
             _organizationRepository = organizationRepository;
         }
+
 
         // GET: OrganizationController
         [HttpGet]

@@ -1,16 +1,13 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using VforNGOss.Dapper.Repositories;
-
 
 namespace VforNGOss.Tests.UITests
 {
-
-    [TestFixture, Description("Create")]
-    public class Create
+    [TestFixture, Description("Edit")]
+    public class Edit
     {
-        IOrganizationRepository _organization;
         IWebDriver driver;
 
         [OneTimeSetUp]
@@ -19,26 +16,18 @@ namespace VforNGOss.Tests.UITests
             driver = new ChromeDriver();
         }
 
-        [Test, Description("Create an Organization")]
-        public void CreateAnOrganization()
+        [Test, Description("Edit an Organization")]
+        public void EditAnOrganization()
         {
-            driver.Navigate().GoToUrl("https://localhost:7211");
-            IWebElement AreUOrg = driver.FindElement(By.Id("ruorg"));
-            AreUOrg.Click();
-            driver.FindElement(By.Id("email")).SendKeys("testing-org@mail.com");
-            IWebElement passwordField = driver.FindElement(By.Id("password"));
-            passwordField.SendKeys("progressnet");
-            passwordField.Submit();
-            Assert.Pass();
+            //driver.Navigate().GoToUrl("https://localhost:7211");
+            //IWebElement AreUOrg = driver.FindElement(By.Id("ruorg"));
+            //AreUOrg.Click();
+            //driver.FindElement(By.Id("email")).SendKeys("testorgtest@mail.com");
+            //IWebElement passwordField = driver.FindElement(By.Id("password"));
+            //passwordField.SendKeys("progressnet");
+            //passwordField.Submit();
+            //Assert.Pass();
         }
-
-        [TearDown]
-        public void RunAfterAnyTests()
-        {
-            var organization = _organization.FindByEmail("testing-org@mail.com");
-            _organization.Remove(organization.Id);
-        }
-
 
         //[Test, Description("Create a Volunteer")]
         //public void CreateAVolunteer()
